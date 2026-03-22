@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://melodious-llama-a63107.netlify.app/sitemap.xml
