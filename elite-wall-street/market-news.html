@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Latest Market News - Real-time crypto, forex, and stock market news">
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <title>Market News | Elite Wall Street</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .page-hero {
+            padding: calc(var(--header-height) + 80px) 0 60px;
+            text-align: center;
+        }
+        
+        .page-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .page-title {
+            font-family: var(--font-primary);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        
+        .page-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+        
+        .breadcrumb a {
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary-red);
+        }
+        
+        .breadcrumb-current {
+            color: var(--primary-red);
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: livePulse 2s infinite;
+        }
+        
+        @keyframes livePulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .live-text {
+            font-family: var(--font-primary);
+            font-size: 0.875rem;
+            color: #00ff88;
+            font-weight: 600;
+        }
+
+        .news-section {
+            padding: 40px 0 80px;
+        }
+        
+        .news-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .widget-section {
+            margin-bottom: 48px;
+        }
+        
+        .widget-title {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .widget-title i {
+            color: var(--primary-red);
+        }
+        
+        .live-badge {
+            padding: 4px 10px;
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #000;
+            text-transform: uppercase;
+        }
+
+        .widget-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .widget-iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+
+        .news-grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+        }
+        
+        @media (max-width: 1024px) {
+            .news-grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .main-news-column {
+            min-width: 0;
+        }
+
+        .sidebar-column {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .quick-links-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+        }
+        
+        .quick-links-title {
+            font-family: var(--font-primary);
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quick-links-title i {
+            color: var(--primary-red);
+        }
+        
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .quick-link:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .sidebar-widget {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            padding-bottom: 30px;
+        }
+        
+        .sidebar-widget-title {
+            font-family: var(--font-primary);
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-widget-title i {
+            color: var(--primary-red);
+        }
+
+        .info-banner {
+            background: linear-gradient(135deg, rgba(255, 0, 51, 0.1), rgba(255, 0, 51, 0.05));
+            border: 1px solid rgba(255, 0, 51, 0.2);
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .info-banner-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .info-banner-text strong {
+            display: block;
+            font-family: var(--font-primary);
+            margin-bottom: 4px;
+        }
+        
+        .info-banner-text span {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 120px; height: 120px; border-radius: 10px;">
+            </div>
+            <div class="preloader-text">ELITE WALL STREET</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+            <div class="preloader-percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="gradient-orb gradient-orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader" class="main-header">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-icon">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 60px; height: 60px; border-radius: 8px;">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-elite">ELITE</span>
+                            <span class="logo-wallstreet">WALL STREET</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link"><span class="nav-icon"><i class="fas fa-home"></i></span><span class="nav-text">Home</span></a></li>
+                    <li><a href="market.html" class="nav-link"><span class="nav-icon"><i class="fas fa-chart-line"></i></span><span class="nav-text">Market</span></a></li>
+                    <li><a href="community.html" class="nav-link"><span class="nav-icon"><i class="fas fa-users"></i></span><span class="nav-text">Community</span></a></li>
+                    <li><a href="courses.html" class="nav-link"><span class="nav-icon"><i class="fas fa-graduation-cap"></i></span><span class="nav-text">Courses</span></a></li>
+                    <li><a href="about.html" class="nav-link"><span class="nav-icon"><i class="fas fa-info-circle"></i></span><span class="nav-text">About</span></a></li>
+                    <li><a href="contact.html" class="nav-link"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span class="nav-text">Contact</span></a></li>
+                </ul>
+            </div>
+
+            <div class="auth-buttons">
+                <a href="auth.html?mode=login" class="btn-login"><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                <a href="auth.html?mode=signup" class="btn-signup"><i class="fas fa-user-plus"></i><span>Sign Up</span></a>
+            </div>
+
+            <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px;">
+                    <div class="sidebar-logo-text">
+                        <span class="sidebar-elite">ELITE</span>
+                        <span class="sidebar-ws">WALL STREET</span>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="close-sidebar"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="sidebar-links">
+                    <li class="sidebar-item"><a href="index.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-home"></i></div><span class="sidebar-text">Home</span><div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div></a></li>
+                    <li class="sidebar-item"><a href="market.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-chart-line"></i></div><span class="sidebar-text">Market</span><div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div></a></li>
+                    <li class="sidebar-item"><a href="community.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-users"></i></div><span class="sidebar-text">Community</span><div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div></a></li>
+                    <li class="sidebar-item"><a href="courses.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-graduation-cap"></i></div><span class="sidebar-text">Courses</span><div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div></a></li>
+                    <li class="sidebar-item"><a href="about.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-info-circle"></i></div><span class="sidebar-text">About</span><div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div></a></li>
+                    <li class="sidebar-item"><a href="contact.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-envelope"></i></div><span class="sidebar-text">Contact</span><div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div></a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-auth">
+                <a href="auth.html?mode=login" class="sidebar-btn login"><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                <a href="auth.html?mode=signup" class="sidebar-btn signup"><i class="fas fa-user-plus"></i><span>Sign Up Free</span></a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <p>© 2026 Elite Wall Street</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content">
+        
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="page-hero-content" data-aos="fade-up">
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span class="live-text">LIVE UPDATES</span>
+                </div>
+                <span class="section-tag"><i class="fas fa-newspaper"></i> Real-Time News</span>
+                <h1 class="page-title">Market <span class="gradient-text">News</span></h1>
+                <p class="page-subtitle">Live updates from crypto, forex, and stock markets. Real-time data powered by TradingView.</p>
+                <div class="breadcrumb">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <span>/</span>
+                    <span class="breadcrumb-current">Market News</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="news-section">
+            <div class="news-container">
+
+                <!-- Info Banner -->
+                <div class="info-banner" data-aos="fade-up">
+                    <div class="info-banner-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="info-banner-text">
+                        <strong>Real-Time Market Data</strong>
+                        <span>All data is live and auto-updates. Powered by TradingView.</span>
+                    </div>
+                </div>
+
+                <!-- Live Crypto Ticker -->
+                <div class="widget-section" data-aos="fade-up">
+                    <h2 class="widget-title">
+                        <i class="fab fa-bitcoin"></i> Live Crypto Prices
+                        <span class="live-badge">LIVE</span>
+                    </h2>
+                    <div class="widget-box">
+                        <iframe class="widget-iframe" height="80" src="https://s.tradingview.com/embed-widget/ticker-tape/?locale=en#%7B%22symbols%22%3A%5B%7B%22proName%22%3A%22BINANCE%3ABTCUSDT%22%2C%22title%22%3A%22Bitcoin%22%7D%2C%7B%22proName%22%3A%22BINANCE%3AETHUSDT%22%2C%22title%22%3A%22Ethereum%22%7D%2C%7B%22proName%22%3A%22BINANCE%3ABNBUSDT%22%2C%22title%22%3A%22BNB%22%7D%2C%7B%22proName%22%3A%22BINANCE%3ASOLUSDT%22%2C%22title%22%3A%22Solana%22%7D%2C%7B%22proName%22%3A%22FX%3AEURUSD%22%2C%22title%22%3A%22EUR%2FUSD%22%7D%2C%7B%22proName%22%3A%22TVC%3AGOLD%22%2C%22title%22%3A%22Gold%22%7D%5D%2C%22showSymbolLogo%22%3Atrue%2C%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22displayMode%22%3A%22adaptive%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A80%7D"></iframe>
+                    </div>
+                </div>
+
+                <!-- Main Grid Layout -->
+                <div class="news-grid-layout">
+                    
+                    <!-- Main News Column -->
+                    <div class="main-news-column">
+                        
+                        <!-- Market News -->
+                        <div class="widget-section" data-aos="fade-up">
+                            <h2 class="widget-title">
+                                <i class="fas fa-newspaper"></i> Latest Market News
+                                <span class="live-badge">REAL-TIME</span>
+                            </h2>
+                            <div class="widget-box">
+                                <iframe class="widget-iframe" height="600" src="https://s.tradingview.com/embed-widget/timeline/?locale=en#%7B%22feedMode%22%3A%22all_symbols%22%2C%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22displayMode%22%3A%22regular%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A600%7D"></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Economic Calendar -->
+                        <div class="widget-section" data-aos="fade-up">
+                            <h2 class="widget-title">
+                                <i class="fas fa-calendar-alt"></i> Economic Calendar
+                                <span class="live-badge">LIVE</span>
+                            </h2>
+                            <div class="widget-box">
+                                <iframe class="widget-iframe" height="500" src="https://s.tradingview.com/embed-widget/events/?locale=en#%7B%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22width%22%3A%22100%25%22%2C%22height%22%3A500%2C%22importanceFilter%22%3A%22-1%2C0%2C1%22%7D"></iframe>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Sidebar Column -->
+                    <div class="sidebar-column">
+                        
+                        <!-- Top Movers -->
+                        <div class="sidebar-widget" data-aos="fade-up">
+                            <h3 class="sidebar-widget-title"><i class="fas fa-fire"></i> Top Movers</h3>
+                            <iframe class="widget-iframe" height="420" src="https://s.tradingview.com/embed-widget/hotlists/?locale=en#%7B%22colorTheme%22%3A%22dark%22%2C%22dateRange%22%3A%2212M%22%2C%22exchange%22%3A%22CRYPTO%22%2C%22showChart%22%3Atrue%2C%22width%22%3A%22100%25%22%2C%22height%22%3A420%2C%22isTransparent%22%3Atrue%2C%22showSymbolLogo%22%3Atrue%7D"></iframe>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="quick-links-section" data-aos="fade-up">
+                            <h3 class="quick-links-title"><i class="fas fa-link"></i> Quick Links</h3>
+                            <div class="quick-links-grid">
+                                <a href="https://coinmarketcap.com/" target="_blank" class="quick-link"><i class="fas fa-coins"></i> CoinMarketCap</a>
+                                <a href="https://www.coingecko.com/" target="_blank" class="quick-link"><i class="fas fa-chart-pie"></i> CoinGecko</a>
+                                <a href="https://www.tradingview.com/" target="_blank" class="quick-link"><i class="fas fa-chart-line"></i> TradingView</a>
+                                <a href="https://www.investing.com/" target="_blank" class="quick-link"><i class="fas fa-globe"></i> Investing.com</a>
+                                <a href="https://www.binance.com/" target="_blank" class="quick-link"><i class="fab fa-bitcoin"></i> Binance</a>
+                                <a href="https://www.bloomberg.com/markets" target="_blank" class="quick-link"><i class="fas fa-newspaper"></i> Bloomberg</a>
+                            </div>
+                        </div>
+
+                        <!-- Forex Rates -->
+                        <div class="sidebar-widget" data-aos="fade-up">
+                            <h3 class="sidebar-widget-title"><i class="fas fa-dollar-sign"></i> Forex Rates</h3>
+                            <iframe class="widget-iframe" height="380" src="https://s.tradingview.com/embed-widget/forex-cross-rates/?locale=en#%7B%22width%22%3A%22100%25%22%2C%22height%22%3A380%2C%22currencies%22%3A%5B%22EUR%22%2C%22USD%22%2C%22GBP%22%2C%22JPY%22%2C%22AUD%22%5D%2C%22isTransparent%22%3Atrue%2C%22colorTheme%22%3A%22dark%22%7D"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="mainFooter" class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 40px; height: 40px; border-radius: 8px;">
+                            <div class="footer-logo-text">
+                                <span class="footer-elite">ELITE</span>
+                                <span class="footer-ws">WALL STREET</span>
+                            </div>
+                        </div>
+                        <p class="footer-description">The premier trading community for ambitious traders.</p>
+                        <div class="footer-social">
+                            <a href="#" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="social-btn twitter"><i class="fab fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="market.html"><i class="fas fa-chevron-right"></i> Market</a></li>
+                            <li><a href="community.html"><i class="fas fa-chevron-right"></i> Community</a></li>
+                            <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Resources</h4>
+                        <ul>
+                            <li><a href="trading-guide.html"><i class="fas fa-chevron-right"></i> Trading Guide</a></li>
+                            <li><a href="market-news.html"><i class="fas fa-chevron-right"></i> Market News</a></li>
+                            <li><a href="economic-calendar.html"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                            <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Trading Tools</a></li>
+                            <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="support.html"><i class="fas fa-chevron-right"></i> Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4 class="footer-heading">Contact Us</h4>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><span>support@elitewallstreet.com</span></div>
+                        <div class="contact-item"><i class="fas fa-phone"></i><span>+923496518562</span></div>
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>LAHORE PAKISTAN</span></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2026 <span class="gradient-text">Elite Wall Street</span>. All Rights Reserved.</p>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        AOS.init({ duration: 800, easing: 'ease-out', once: true });
+        
+        var backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

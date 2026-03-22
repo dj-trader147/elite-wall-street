@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Professional Trading Tools - ELITE WALL STREET. Calculate position size, risk, pips, and more.">
+    <meta name="keywords" content="trading tools, position calculator, risk management, pip calculator, forex tools">
+    <meta name="author" content="Elite Wall Street">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ff0033">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>Trading Tools - ELITE WALL STREET</title>
+
+    <style>
+        /* ==================== CALCULATOR MODAL STYLES ==================== */
+        .calculator-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .calculator-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .calculator-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .calculator-modal.active .calculator-container {
+            transform: scale(1);
+        }
+
+        .calculator-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: var(--bg-card);
+            z-index: 10;
+        }
+
+        .calculator-header h3 {
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .calculator-header h3 i {
+            color: var(--primary-red);
+        }
+
+        .close-calculator {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .close-calculator:hover {
+            background: var(--primary-red);
+            transform: rotate(90deg);
+        }
+
+        .calculator-body {
+            padding: 24px;
+        }
+
+        .calc-input-group {
+            margin-bottom: 20px;
+        }
+
+        .calc-input-group label {
+            display: block;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .calc-input-group input,
+        .calc-input-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .calc-input-group input:focus,
+        .calc-input-group select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.2);
+        }
+
+        .calc-input-group input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .calc-input-group select option {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-glow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .calc-result {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(255, 0, 51, 0.1);
+            border: 1px solid rgba(255, 0, 51, 0.3);
+            border-radius: var(--border-radius-md);
+            display: none;
+        }
+
+        .calc-result.show {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calc-result h4 {
+            font-family: var(--font-secondary);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .calc-result .result-value {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-red);
+        }
+
+        .calc-result .result-details {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .calc-result .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .calc-result .result-row span:first-child {
+            color: var(--text-secondary);
+        }
+
+        .calc-result .result-row span:last-child {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Input with icon */
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+        }
+
+        .input-with-icon input {
+            padding-left: 42px;
+        }
+
+        /* ==================== MARKET SESSION TIMER STYLES ==================== */
+        .time-display {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .time-box {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .time-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .time-value {
+            display: block;
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .time-zone {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 3px;
+        }
+
+        /* Overlap Alert */
+        .overlap-alert {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, rgba(255, 0, 51, 0.2), rgba(255, 100, 0, 0.2));
+            border: 1px solid rgba(255, 100, 0, 0.5);
+            border-radius: var(--border-radius-md);
+            padding: 15px;
+            margin-bottom: 20px;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255, 100, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 100, 0, 0.6);
+            }
+        }
+
+        .overlap-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff6600, #ff0033);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            animation: fireAnimation 1s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes fireAnimation {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .overlap-info {
+            flex: 1;
+        }
+
+        .overlap-title {
+            display: block;
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #ff6600;
+        }
+
+        .overlap-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Best Hours Info */
+        .best-hours-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: var(--border-radius-md);
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #ffd700;
+        }
+
+        .best-hours-info i {
+            font-size: 1.1rem;
+        }
+
+        /* Session Grid */
+        .session-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .session-item {
+            padding: 16px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .session-item.active {
+            border-color: var(--success);
+            background: rgba(0, 255, 136, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .session-item.active .session-name {
+            color: var(--success);
+        }
+
+        .session-item.closed {
+            opacity: 0.6;
+        }
+
+        .session-item.best-hours {
+            border-color: #ffd700 !important;
+            background: rgba(255, 215, 0, 0.1) !important;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .session-item.best-hours::before {
+            content: '⭐';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 1.2rem;
+        }
+
+        .session-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-glass);
+            border-radius: var(--border-radius-md);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .session-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .session-name {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .session-dst-badge {
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            background: rgba(255, 165, 0, 0.2);
+            border: 1px solid rgba(255, 165, 0, 0.5);
+            border-radius: 10px;
+            color: #ffa500;
+            font-family: var(--font-secondary);
+        }
+
+        .session-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .session-local-time {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .session-local-time i {
+            margin-right: 4px;
+            color: var(--primary-red);
+        }
+
+        .session-right {
+            text-align: right;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+
+        .session-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: var(--border-radius-full);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .session-status.open {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--success);
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .session-status.closed {
+            background: rgba(255, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        .session-countdown {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: block;
+        }
+
+        .session-countdown.opening {
+            color: var(--success);
+        }
+
+        .session-countdown.closing {
+            color: var(--warning);
+        }
+
+        /* DST Notice */
+        .dst-notice {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .dst-notice i {
+            color: var(--info);
+        }
+
+        /* Responsive for Session Timer */
+        @media (max-width: 480px) {
+            .time-display {
+                grid-template-columns: 1fr;
+            }
+            
+            .session-item {
+                flex-wrap: wrap;
+            }
+            
+            .session-right {
+                width: 100%;
+                text-align: left;
+                margin-top: 10px;
+                padding-top: 10px;
+                border-top: 1px solid var(--border-color);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .overlap-alert {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .overlap-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 120px; height: 120px; border-radius: 10px;">
+            </div>
+            <div class="preloader-text">ELITE WALL STREET</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+            <div class="preloader-percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    
+    <!-- Animated Background -->
+    <div class="background-effects">
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="gradient-orb gradient-orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="mainHeader" class="main-header">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-icon">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 60px; height: 60px; border-radius: 8px;">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-elite">ELITE</span>
+                            <span class="logo-wallstreet">WALL STREET</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Home</span>
+                    </a></li>
+                    <li><a href="market.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                        <span class="nav-text">Market</span>
+                    </a></li>
+                    <li><a href="community.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
+                        <span class="nav-text">Community</span>
+                    </a></li>
+                    <li><a href="courses.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+                        <span class="nav-text">Courses</span>
+                    </a></li>
+                    <li><a href="about.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-info-circle"></i></span>
+                        <span class="nav-text">About</span>
+                    </a></li>
+                    <li><a href="contact.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-text">Contact</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="auth-buttons">
+                <a href="auth.html?mode=login" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="btn-signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </a>
+            </div>
+
+            <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px;">
+                    <div class="sidebar-logo-text">
+                        <span class="sidebar-elite">ELITE</span>
+                        <span class="sidebar-ws">WALL STREET</span>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="close-sidebar" aria-label="Close Menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="sidebar-links">
+                    <li class="sidebar-item">
+                        <a href="index.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-home"></i></div>
+                            <span class="sidebar-text">Home</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="market.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-chart-line"></i></div>
+                            <span class="sidebar-text">Market</span>
+                            <div class="sidebar-badge">LIVE</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="community.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-users"></i></div>
+                            <span class="sidebar-text">Community</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="courses.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <span class="sidebar-text">Courses</span>
+                            <div class="sidebar-badge hot">HOT</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="about.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-info-circle"></i></div>
+                            <span class="sidebar-text">About</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="contact.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-envelope"></i></div>
+                            <span class="sidebar-text">Contact</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-auth">
+                <a href="auth.html?mode=login" class="sidebar-btn login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="sidebar-btn signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up Free</span>
+                </a>
+            </div>
+
+            <div class="sidebar-social">
+                <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-link twitter"><i class="fab fa-x-twitter"></i></a>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>© 2026 Elite Wall Street</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section" style="min-height: 60vh;">
+            <div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+                <div class="hero-content" data-aos="fade-up" style="text-align: center; max-width: 900px; margin: 0 auto;">
+                    <div class="hero-badge" style="margin: 0 auto 30px;">
+                        <span class="badge-icon"><i class="fas fa-calculator"></i></span>
+                        <span class="badge-text">Professional Tools Suite</span>
+                    </div>
+
+                    <h1 class="hero-title" style="text-align: center;">
+                        <span class="title-line">
+                            <span class="word gradient-text">TRADING</span>
+                        </span>
+                        <span class="title-line">
+                            <span class="word">TOOLS</span>
+                        </span>
+                    </h1>
+
+                    <p class="hero-subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+                        Professional-grade calculators and tools designed for serious traders. 
+                        Calculate position sizes, manage risk, and optimize your trading strategy.
+                    </p>
+
+                    <div class="hero-stats" style="justify-content: center;">
+                        <div class="hero-stat">
+                            <span class="stat-value">6</span>
+                            <span class="stat-label">Pro Tools</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="hero-stat">
+                            <span class="stat-value">100</span>
+                            <span class="stat-suffix">%</span>
+                            <span class="stat-label">Free</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="hero-stat">
+                            <span class="stat-value">24</span>
+                            <span class="stat-suffix">/7</span>
+                            <span class="stat-label">Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Grid Section -->
+        <section style="padding: 80px 0;">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-tag">Essential Calculators</span>
+                    <h2 class="section-title">
+                        <span>Professional Trading</span>
+                        <span class="gradient-text">Calculators</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Powerful tools to help you make informed trading decisions.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Position Size Calculator -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                        </div>
+                        <h3 class="feature-title">Position Size Calculator</h3>
+                        <p class="feature-description">
+                            Calculate the optimal position size based on your account balance, risk percentage, and stop loss.
+                        </p>
+                        <div class="feature-stats">
+                            <span class="stat"><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>Account-based calculation</span>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button onclick="openCalculator('position')" class="btn-primary" style="width: 100%; justify-content: center;">
+                                <span class="btn-content">
+                                    <i class="fas fa-play"></i>
+                                    <span>Use Tool</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Risk Management Tool -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                        </div>
+                        <h3 class="feature-title">Risk Management Tool</h3>
+                        <p class="feature-description">
+                            Calculate risk/reward ratios and manage your trading risk like a professional trader.
+                        </p>
+                        <div class="feature-stats">
+                            <span class="stat"><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>Risk/Reward analysis</span>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button onclick="openCalculator('risk')" class="btn-primary" style="width: 100%; justify-content: center;">
+                                <span class="btn-content">
+                                    <i class="fas fa-play"></i>
+                                    <span>Use Tool</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Lot Size Calculator -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                        </div>
+                        <h3 class="feature-title">Lot Size Calculator</h3>
+                        <p class="feature-description">
+                            Determine the perfect lot size for your trades. Supports standard, mini, and micro lots.
+                        </p>
+                        <div class="feature-stats">
+                            <span class="stat"><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>All lot types supported</span>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button onclick="openCalculator('lot')" class="btn-primary" style="width: 100%; justify-content: center;">
+                                <span class="btn-content">
+                                    <i class="fas fa-play"></i>
+                                    <span>Use Tool</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pip Calculator -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                        </div>
+                        <h3 class="feature-title">Pip Calculator</h3>
+                        <p class="feature-description">
+                            Calculate pip values for different currency pairs. Know your profit potential instantly.
+                        </p>
+                        <div class="feature-stats">
+                            <span class="stat"><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>All major pairs</span>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button onclick="openCalculator('pip')" class="btn-primary" style="width: 100%; justify-content: center;">
+                                <span class="btn-content">
+                                    <i class="fas fa-play"></i>
+                                    <span>Use Tool</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Market Session Timer -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <h3 class="feature-title">Market Session Timer</h3>
+                        <p class="feature-description">
+                            Track major market sessions worldwide - Tokyo, London, New York with live DST support.
+                        </p>
+                        <div class="feature-stats">
+                            <span class="stat"><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>Live session status + DST</span>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button onclick="openCalculator('session')" class="btn-primary" style="width: 100%; justify-content: center;">
+                                <span class="btn-content">
+                                    <i class="fas fa-play"></i>
+                                    <span>Use Tool</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Gold Calculator -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300" style="border: 1px solid rgba(255, 215, 0, 0.3);">
+                        <div class="feature-icon">
+                            <div class="icon-wrapper" style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                        </div>
+                        <h3 class="feature-title">Gold (XAU/USD) Calculator</h3>
+                        <p class="feature-description">
+                            Specialized calculator for gold trading with precise pip and profit calculations.
+                        </p>
+                        <div class="feature-stats">
+                            <span class="stat"><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>XAU/USD optimized</span>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button onclick="openCalculator('gold')" class="btn-primary" style="width: 100%; justify-content: center;">
+                                <span class="btn-content">
+                                    <i class="fas fa-play"></i>
+                                    <span>Use Tool</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Use Section -->
+        <section style="padding: 80px 0; background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-tag">Why Choose Our Tools</span>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Built For</span>
+                        <span>Professional Traders</span>
+                    </h2>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px;">
+                    <div data-aos="fade-up" data-aos-delay="100" style="text-align: center; padding: 30px;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; background: var(--gradient-primary); border-radius: 16px; box-shadow: var(--shadow-glow-sm);">
+                            <i class="fas fa-bolt" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 style="font-family: var(--font-primary); font-size: 1.25rem; margin-bottom: 10px;">Lightning Fast</h4>
+                        <p style="color: var(--text-secondary);">Instant calculations with no delays.</p>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="200" style="text-align: center; padding: 30px;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; background: var(--gradient-primary); border-radius: 16px; box-shadow: var(--shadow-glow-sm);">
+                            <i class="fas fa-bullseye" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 style="font-family: var(--font-primary); font-size: 1.25rem; margin-bottom: 10px;">100% Accurate</h4>
+                        <p style="color: var(--text-secondary);">Precision calculations you can trust.</p>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="300" style="text-align: center; padding: 30px;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; background: var(--gradient-primary); border-radius: 16px; box-shadow: var(--shadow-glow-sm);">
+                            <i class="fas fa-mobile-screen" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 style="font-family: var(--font-primary); font-size: 1.25rem; margin-bottom: 10px;">Mobile Friendly</h4>
+                        <p style="color: var(--text-secondary);">Use on any device, anywhere.</p>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="400" style="text-align: center; padding: 30px;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; background: var(--gradient-primary); border-radius: 16px; box-shadow: var(--shadow-glow-sm);">
+                            <i class="fas fa-lock-open" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 style="font-family: var(--font-primary); font-size: 1.25rem; margin-bottom: 10px;">Completely Free</h4>
+                        <p style="color: var(--text-secondary);">No hidden charges, ever.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-background">
+                <div class="cta-glow"></div>
+            </div>
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2 class="cta-title">
+                        <span>Ready to Trade</span>
+                        <span class="gradient-text">Like a Pro?</span>
+                    </h2>
+                    <p class="cta-text">
+                        Join thousands of traders using Elite Wall Street tools.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="auth.html?mode=signup" class="btn-primary cta-btn">
+                            <span class="btn-content">
+                                <i class="fas fa-rocket"></i>
+                                <span>Get Started Free</span>
+                            </span>
+                        </a>
+                        <a href="courses.html" class="btn-outline cta-btn">
+                            <span>Learn Trading</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="mainFooter" class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 40px; height: 40px; border-radius: 8px;">
+                            <div class="footer-logo-text">
+                                <span class="footer-elite">ELITE</span>
+                                <span class="footer-ws">WALL STREET</span>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            The premier trading community for ambitious traders. Master the markets with expert guidance.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="social-btn twitter"><i class="fab fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="market.html"><i class="fas fa-chevron-right"></i> Market</a></li>
+                            <li><a href="community.html"><i class="fas fa-chevron-right"></i> Community</a></li>
+                            <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Resources</h4>
+                        <ul>
+                            <li><a href="trading-guide.html"><i class="fas fa-chevron-right"></i> Trading Guide</a></li>
+                            <li><a href="market-news.html"><i class="fas fa-chevron-right"></i> Market News</a></li>
+                            <li><a href="economic-calendar.html"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                            <li><a href="trading-tools.html"><i class="fas fa-chevron-right"></i> Trading Tools</a></li>
+                            <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="support.html"><i class="fas fa-chevron-right"></i> Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-contact">
+                        <h4 class="footer-heading">Contact Us</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@elitewallstreet.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+923496518562</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>LAHORE PAKISTAN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2026 <span class="gradient-text">Elite Wall Street</span>. All Rights Reserved.</p>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ==================== CALCULATOR MODALS ==================== -->
+
+    <!-- Position Size Calculator Modal -->
+    <div id="positionModal" class="calculator-modal">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h3><i class="fas fa-calculator"></i> Position Size Calculator</h3>
+                <button class="close-calculator" onclick="closeCalculator('position')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="calculator-body">
+                <div class="calc-input-group">
+                    <label>Account Balance ($)</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                        <input type="number" id="posAccountBalance" placeholder="e.g., 10000" value="10000">
+                    </div>
+                </div>
+                <div class="calc-input-group">
+                    <label>Risk Percentage (%)</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-percent"></i>
+                        <input type="number" id="posRiskPercent" placeholder="e.g., 2" value="2" step="0.1">
+                    </div>
+                </div>
+                <div class="calc-input-group">
+                    <label>Stop Loss (Pips)</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-hand-paper"></i>
+                        <input type="number" id="posStopLoss" placeholder="e.g., 50" value="50">
+                    </div>
+                </div>
+                <div class="calc-input-group">
+                    <label>Pip Value ($)</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-coins"></i>
+                        <input type="number" id="posPipValue" placeholder="e.g., 10" value="10" step="0.01">
+                    </div>
+                </div>
+                <button class="calc-btn" onclick="calculatePosition()">
+                    <i class="fas fa-calculator"></i>
+                    Calculate Position Size
+                </button>
+                <div id="positionResult" class="calc-result">
+                    <h4>RECOMMENDED POSITION SIZE</h4>
+                    <div class="result-value" id="posResultValue">0.00 Lots</div>
+                    <div class="result-details">
+                        <div class="result-row">
+                            <span>Risk Amount:</span>
+                            <span id="posRiskAmount">$0.00</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Max Loss:</span>
+                            <span id="posMaxLoss">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Risk Management Calculator Modal -->
+    <div id="riskModal" class="calculator-modal">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h3><i class="fas fa-shield-halved"></i> Risk Management Tool</h3>
+                <button class="close-calculator" onclick="closeCalculator('risk')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="calculator-body">
+                <div class="calc-input-group">
+                    <label>Entry Price</label>
+                    <input type="number" id="riskEntry" placeholder="e.g., 1.1000" step="0.0001">
+                </div>
+                <div class="calc-input-group">
+                    <label>Stop Loss Price</label>
+                    <input type="number" id="riskStopLoss" placeholder="e.g., 1.0950" step="0.0001">
+                </div>
+                <div class="calc-input-group">
+                    <label>Take Profit Price</label>
+                    <input type="number" id="riskTakeProfit" placeholder="e.g., 1.1100" step="0.0001">
+                </div>
+                <button class="calc-btn" onclick="calculateRisk()">
+                    <i class="fas fa-calculator"></i>
+                    Calculate Risk/Reward
+                </button>
+                <div id="riskResult" class="calc-result">
+                    <h4>RISK/REWARD RATIO</h4>
+                    <div class="result-value" id="riskResultValue">1:0</div>
+                    <div class="result-details">
+                        <div class="result-row">
+                            <span>Risk (Pips):</span>
+                            <span id="riskPips">0</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Reward (Pips):</span>
+                            <span id="rewardPips">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lot Size Calculator Modal -->
+    <div id="lotModal" class="calculator-modal">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h3><i class="fas fa-chart-pie"></i> Lot Size Calculator</h3>
+                <button class="close-calculator" onclick="closeCalculator('lot')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="calculator-body">
+                <div class="calc-input-group">
+                    <label>Account Balance ($)</label>
+                    <input type="number" id="lotAccountBalance" placeholder="e.g., 10000" value="10000">
+                </div>
+                <div class="calc-input-group">
+                    <label>Risk Percentage (%)</label>
+                    <input type="number" id="lotRiskPercent" placeholder="e.g., 1" value="1" step="0.1">
+                </div>
+                <div class="calc-input-group">
+                    <label>Stop Loss (Pips)</label>
+                    <input type="number" id="lotStopLoss" placeholder="e.g., 30" value="30">
+                </div>
+                <div class="calc-input-group">
+                    <label>Currency Pair</label>
+                    <select id="lotPair">
+                        <option value="10">EUR/USD, GBP/USD (Pip = $10)</option>
+                        <option value="8.5">USD/JPY (Pip ≈ $8.50)</option>
+                        <option value="7.5">AUD/USD (Pip ≈ $7.50)</option>
+                        <option value="10">USD/CHF (Pip = $10)</option>
+                    </select>
+                </div>
+                <button class="calc-btn" onclick="calculateLot()">
+                    <i class="fas fa-calculator"></i>
+                    Calculate Lot Size
+                </button>
+                <div id="lotResult" class="calc-result">
+                    <h4>RECOMMENDED LOT SIZE</h4>
+                    <div class="result-value" id="lotResultValue">0.00 Lots</div>
+                    <div class="result-details">
+                        <div class="result-row">
+                            <span>Standard Lots:</span>
+                            <span id="lotStandard">0.00</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Mini Lots:</span>
+                            <span id="lotMini">0.00</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Micro Lots:</span>
+                            <span id="lotMicro">0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pip Calculator Modal -->
+    <div id="pipModal" class="calculator-modal">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h3><i class="fas fa-coins"></i> Pip Calculator</h3>
+                <button class="close-calculator" onclick="closeCalculator('pip')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="calculator-body">
+                <div class="calc-input-group">
+                    <label>Currency Pair</label>
+                    <select id="pipPair">
+                        <option value="EUR/USD">EUR/USD</option>
+                        <option value="GBP/USD">GBP/USD</option>
+                        <option value="USD/JPY">USD/JPY</option>
+                        <option value="AUD/USD">AUD/USD</option>
+                        <option value="USD/CAD">USD/CAD</option>
+                        <option value="USD/CHF">USD/CHF</option>
+                    </select>
+                </div>
+                <div class="calc-input-group">
+                    <label>Lot Size</label>
+                    <input type="number" id="pipLotSize" placeholder="e.g., 1.00" value="1" step="0.01">
+                </div>
+                <div class="calc-input-group">
+                    <label>Number of Pips</label>
+                    <input type="number" id="pipCount" placeholder="e.g., 50" value="50">
+                </div>
+                <button class="calc-btn" onclick="calculatePip()">
+                    <i class="fas fa-calculator"></i>
+                    Calculate Pip Value
+                </button>
+                <div id="pipResult" class="calc-result">
+                    <h4>PIP VALUE</h4>
+                    <div class="result-value" id="pipResultValue">$0.00</div>
+                    <div class="result-details">
+                        <div class="result-row">
+                            <span>Per Pip Value:</span>
+                            <span id="pipPerPip">$0.00</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Total Profit/Loss:</span>
+                            <span id="pipTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Session Timer Modal (ADVANCED) -->
+    <div id="sessionModal" class="calculator-modal">
+        <div class="calculator-container" style="max-width: 600px;">
+            <div class="calculator-header">
+                <h3><i class="fas fa-clock"></i> Market Session Timer</h3>
+                <button class="close-calculator" onclick="closeCalculator('session')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="calculator-body">
+                <!-- Current Time Display -->
+                <div class="time-display">
+                    <div class="time-box">
+                        <span class="time-label">Your Local Time</span>
+                        <span class="time-value" id="localTime">--:--:--</span>
+                        <span class="time-zone" id="localTimezone">--</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-label">UTC / GMT</span>
+                        <span class="time-value" id="utcTime">--:--:--</span>
+                        <span class="time-zone">Universal Time</span>
+                    </div>
+                </div>
+
+                <!-- Overlap Alert -->
+                <div class="overlap-alert" id="overlapAlert" style="display: none;">
+                    <div class="overlap-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="overlap-info">
+                        <span class="overlap-title">🔥 High Volatility Period!</span>
+                        <span class="overlap-text" id="overlapText">Sessions overlapping now</span>
+                    </div>
+                </div>
+
+                <!-- Best Trading Hours Info -->
+                <div class="best-hours-info" id="bestHoursInfo">
+                    <i class="fas fa-lightbulb"></i>
+                    <span id="bestHoursText">Best trading hours shown with golden border</span>
+                </div>
+
+                <!-- Sessions Grid -->
+                <div class="session-grid" id="sessionGrid">
+                    <!-- Sessions loaded by JS -->
+                </div>
+
+                <!-- DST Notice -->
+                <div class="dst-notice" id="dstNotice">
+                    <i class="fas fa-info-circle"></i>
+                    <span id="dstText">Timings auto-adjusted for Daylight Saving Time</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gold Calculator Modal -->
+    <div id="goldModal" class="calculator-modal">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h3><i class="fas fa-gem" style="color: #ffd700;"></i> Gold (XAU/USD) Calculator</h3>
+                <button class="close-calculator" onclick="closeCalculator('gold')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="calculator-body">
+                <div class="calc-input-group">
+                    <label>Lot Size</label>
+                    <input type="number" id="goldLotSize" placeholder="e.g., 0.10" value="0.10" step="0.01">
+                </div>
+                <div class="calc-input-group">
+                    <label>Entry Price ($)</label>
+                    <input type="number" id="goldEntry" placeholder="e.g., 2000.00" step="0.01">
+                </div>
+                <div class="calc-input-group">
+                    <label>Exit Price ($)</label>
+                    <input type="number" id="goldExit" placeholder="e.g., 2010.00" step="0.01">
+                </div>
+                <button class="calc-btn" onclick="calculateGold()">
+                    <i class="fas fa-calculator"></i>
+                    Calculate Profit/Loss
+                </button>
+                <div id="goldResult" class="calc-result">
+                    <h4>GOLD TRADE RESULT</h4>
+                    <div class="result-value" id="goldResultValue">$0.00</div>
+                    <div class="result-details">
+                        <div class="result-row">
+                            <span>Price Movement:</span>
+                            <span id="goldMovement">$0.00</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Pips:</span>
+                            <span id="goldPips">0</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Pip Value:</span>
+                            <span id="goldPipValue">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // ==================== CALCULATOR FUNCTIONS ====================
+        let sessionTimerInterval = null;
+
+        // Open Calculator Modal
+        function openCalculator(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                if (type === 'session') {
+                    updateSessionTimer();
+                    if (sessionTimerInterval) clearInterval(sessionTimerInterval);
+                    sessionTimerInterval = setInterval(updateSessionTimer, 1000);
+                }
+            }
+        }
+
+        // Close Calculator Modal
+        function closeCalculator(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                if (type === 'session' && sessionTimerInterval) {
+                    clearInterval(sessionTimerInterval);
+                    sessionTimerInterval = null;
+                }
+            }
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.calculator-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    const modalId = this.id.replace('Modal', '');
+                    closeCalculator(modalId);
+                }
+            });
+        });
+
+        // Close with Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.calculator-modal.active').forEach(modal => {
+                    const modalId = modal.id.replace('Modal', '');
+                    closeCalculator(modalId);
+                });
+            }
+        });
+
+        // ==================== POSITION SIZE CALCULATOR ====================
+        function calculatePosition() {
+            const balance = parseFloat(document.getElementById('posAccountBalance').value) || 0;
+            const riskPercent = parseFloat(document.getElementById('posRiskPercent').value) || 0;
+            const stopLoss = parseFloat(document.getElementById('posStopLoss').value) || 0;
+            const pipValue = parseFloat(document.getElementById('posPipValue').value) || 10;
+
+            const riskAmount = (balance * riskPercent) / 100;
+            const positionSize = riskAmount / (stopLoss * pipValue);
+
+            document.getElementById('posResultValue').textContent = positionSize.toFixed(2) + ' Lots';
+            document.getElementById('posRiskAmount').textContent = '$' + riskAmount.toFixed(2);
+            document.getElementById('posMaxLoss').textContent = '$' + riskAmount.toFixed(2);
+            document.getElementById('positionResult').classList.add('show');
+        }
+
+        // ==================== RISK MANAGEMENT CALCULATOR ====================
+        function calculateRisk() {
+            const entry = parseFloat(document.getElementById('riskEntry').value) || 0;
+            const stopLoss = parseFloat(document.getElementById('riskStopLoss').value) || 0;
+            const takeProfit = parseFloat(document.getElementById('riskTakeProfit').value) || 0;
+
+            const riskPips = Math.abs(entry - stopLoss) * 10000;
+            const rewardPips = Math.abs(takeProfit - entry) * 10000;
+            const ratio = riskPips > 0 ? rewardPips / riskPips : 0;
+
+            document.getElementById('riskResultValue').textContent = '1:' + ratio.toFixed(2);
+            document.getElementById('riskPips').textContent = riskPips.toFixed(1) + ' pips';
+            document.getElementById('rewardPips').textContent = rewardPips.toFixed(1) + ' pips';
+            document.getElementById('riskResult').classList.add('show');
+        }
+
+        // ==================== LOT SIZE CALCULATOR ====================
+        function calculateLot() {
+            const balance = parseFloat(document.getElementById('lotAccountBalance').value) || 0;
+            const riskPercent = parseFloat(document.getElementById('lotRiskPercent').value) || 0;
+            const stopLoss = parseFloat(document.getElementById('lotStopLoss').value) || 0;
+            const pipValue = parseFloat(document.getElementById('lotPair').value) || 10;
+
+            const riskAmount = (balance * riskPercent) / 100;
+            const lotSize = stopLoss > 0 ? riskAmount / (stopLoss * pipValue) : 0;
+
+            document.getElementById('lotResultValue').textContent = lotSize.toFixed(2) + ' Lots';
+            document.getElementById('lotStandard').textContent = lotSize.toFixed(2);
+            document.getElementById('lotMini').textContent = (lotSize * 10).toFixed(2);
+            document.getElementById('lotMicro').textContent = (lotSize * 100).toFixed(2);
+            document.getElementById('lotResult').classList.add('show');
+        }
+
+        // ==================== PIP CALCULATOR ====================
+        function calculatePip() {
+            const lotSize = parseFloat(document.getElementById('pipLotSize').value) || 0;
+            const pips = parseFloat(document.getElementById('pipCount').value) || 0;
+            const pipValuePerLot = 10;
+            const perPipValue = pipValuePerLot * lotSize;
+            const totalValue = perPipValue * pips;
+
+            document.getElementById('pipResultValue').textContent = '$' + totalValue.toFixed(2);
+            document.getElementById('pipPerPip').textContent = '$' + perPipValue.toFixed(2);
+            document.getElementById('pipTotal').textContent = '$' + totalValue.toFixed(2);
+            document.getElementById('pipResult').classList.add('show');
+        }
+
+        // ==================== GOLD CALCULATOR ====================
+        function calculateGold() {
+            const lotSize = parseFloat(document.getElementById('goldLotSize').value) || 0;
+            const entry = parseFloat(document.getElementById('goldEntry').value) || 0;
+            const exit = parseFloat(document.getElementById('goldExit').value) || 0;
+
+            const priceMovement = exit - entry;
+            const pips = priceMovement * 100;
+            const pipValue = lotSize * 1;
+            const profit = pips * pipValue;
+
+            const resultEl = document.getElementById('goldResultValue');
+            resultEl.textContent = (profit >= 0 ? '+' : '') + '$' + profit.toFixed(2);
+            resultEl.style.color = profit >= 0 ? 'var(--success)' : 'var(--danger)';
+            document.getElementById('goldMovement').textContent = '$' + priceMovement.toFixed(2);
+            document.getElementById('goldPips').textContent = pips.toFixed(0);
+            document.getElementById('goldPipValue').textContent = '$' + pipValue.toFixed(2) + '/pip';
+            document.getElementById('goldResult').classList.add('show');
+        }
+
+        // ==================== MARKET SESSION TIMER (ADVANCED) ====================
+        
+        // DST Detection Functions
+        function isUSDST(date) {
+            const year = date.getUTCFullYear();
+            let marchSecondSunday = new Date(Date.UTC(year, 2, 1));
+            while (marchSecondSunday.getUTCDay() !== 0) marchSecondSunday.setUTCDate(marchSecondSunday.getUTCDate() + 1);
+            marchSecondSunday.setUTCDate(marchSecondSunday.getUTCDate() + 7);
+            
+            let novFirstSunday = new Date(Date.UTC(year, 10, 1));
+            while (novFirstSunday.getUTCDay() !== 0) novFirstSunday.setUTCDate(novFirstSunday.getUTCDate() + 1);
+            
+            return date >= marchSecondSunday && date < novFirstSunday;
+        }
+
+        function isEuropeDST(date) {
+            const year = date.getUTCFullYear();
+            let marchLastSunday = new Date(Date.UTC(year, 2, 31));
+            while (marchLastSunday.getUTCDay() !== 0) marchLastSunday.setUTCDate(marchLastSunday.getUTCDate() - 1);
+            
+            let octLastSunday = new Date(Date.UTC(year, 9, 31));
+            while (octLastSunday.getUTCDay() !== 0) octLastSunday.setUTCDate(octLastSunday.getUTCDate() - 1);
+            
+            return date >= marchLastSunday && date < octLastSunday;
+        }
+
+        function isAustraliaDST(date) {
+            const year = date.getUTCFullYear();
+            let octFirstSunday = new Date(Date.UTC(year, 9, 1));
+            while (octFirstSunday.getUTCDay() !== 0) octFirstSunday.setUTCDate(octFirstSunday.getUTCDate() + 1);
+            
+            let aprFirstSundayThisYear = new Date(Date.UTC(year, 3, 1));
+            while (aprFirstSundayThisYear.getUTCDay() !== 0) aprFirstSundayThisYear.setUTCDate(aprFirstSundayThisYear.getUTCDate() + 1);
+            
+            return date >= octFirstSunday || date < aprFirstSundayThisYear;
+        }
+
+        function getMarketSessions(now) {
+            const usDST = isUSDST(now);
+            const europeDST = isEuropeDST(now);
+            const australiaDST = isAustraliaDST(now);
+            
+            return [
+                { name: 'Sydney', icon: '🇦🇺', open: australiaDST ? 20 : 21, close: australiaDST ? 5 : 6, isDST: australiaDST, timezone: australiaDST ? 'AEDT' : 'AEST' },
+                { name: 'Tokyo', icon: '🇯🇵', open: 0, close: 9, isDST: false, timezone: 'JST' },
+                { name: 'London', icon: '🇬🇧', open: europeDST ? 7 : 8, close: europeDST ? 16 : 17, isDST: europeDST, timezone: europeDST ? 'BST' : 'GMT' },
+                { name: 'New York', icon: '🇺🇸', open: usDST ? 12 : 13, close: usDST ? 21 : 22, isDST: usDST, timezone: usDST ? 'EDT' : 'EST' }
+            ];
+        }
+
+        function isSessionActive(session, utcHour) {
+            if (session.open < session.close) {
+                return utcHour >= session.open && utcHour < session.close;
+            } else {
+                return utcHour >= session.open || utcHour < session.close;
+            }
+        }
+
+        function getTimeUntil(targetHour, currentHour, currentMinute, currentSecond) {
+            let hoursUntil = targetHour - currentHour;
+            if (hoursUntil <= 0) hoursUntil += 24;
+            
+            const totalSeconds = (hoursUntil * 3600) - (currentMinute * 60) - currentSecond;
+            return {
+                hours: Math.floor(totalSeconds / 3600),
+                minutes: Math.floor((totalSeconds % 3600) / 60),
+                seconds: totalSeconds % 60
+            };
+        }
+
+        function formatCountdown(time) {
+            if (time.hours > 0) return `${time.hours}h ${time.minutes}m`;
+            if (time.minutes > 0) return `${time.minutes}m ${time.seconds}s`;
+            return `${time.seconds}s`;
+        }
+
+        function utcHourToLocalTime(utcHour) {
+            const now = new Date();
+            const utcDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), utcHour, 0, 0));
+            return utcDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+        }
+
+        function getTimezoneAbbr() {
+            try {
+                const tz = Intl.DateTimeFormat('en', { timeZoneName: 'short' }).formatToParts(new Date())
+                    .find(part => part.type === 'timeZoneName');
+                return tz ? tz.value : 'Local';
+            } catch { return 'Local'; }
+        }
+
+        function updateSessionTimer() {
+            const now = new Date();
+            const utcHour = now.getUTCHours();
+            const utcMinute = now.getUTCMinutes();
+            const utcSecond = now.getUTCSeconds();
+            
+            document.getElementById('localTime').textContent = now.toLocaleTimeString();
+            document.getElementById('localTimezone').textContent = getTimezoneAbbr();
+            document.getElementById('utcTime').textContent = now.toUTCString().slice(17, 25);
+            
+            const sessions = getMarketSessions(now);
+            let activeSessions = [];
+            
+            sessions.forEach(session => {
+                if (isSessionActive(session, utcHour)) activeSessions.push(session.name);
+            });
+            
+            // Overlap Alert
+            const overlapAlert = document.getElementById('overlapAlert');
+            if (activeSessions.length >= 2) {
+                overlapAlert.style.display = 'flex';
+                document.getElementById('overlapText').textContent = `${activeSessions.join(' & ')} sessions overlapping - High liquidity!`;
+            } else {
+                overlapAlert.style.display = 'none';
+            }
+            
+            // Best Hours Text
+            document.getElementById('bestHoursText').textContent = activeSessions.length >= 2 
+                ? '🎯 NOW is a great time to trade! Multiple sessions active.'
+                : 'Best trading hours: London-NY overlap (12:00-16:00 UTC)';
+            
+            // DST Notice
+            const anyDST = sessions.some(s => s.isDST);
+            document.getElementById('dstText').textContent = anyDST 
+                ? '⏰ DST is currently active in some regions. Timings auto-adjusted.'
+                : '⏰ Standard time in all regions. No DST adjustment needed.';
+            
+            // Build Sessions HTML
+            let html = '';
+            sessions.forEach(session => {
+                const isActive = isSessionActive(session, utcHour);
+                const isInOverlap = activeSessions.length >= 2 && activeSessions.includes(session.name);
+                
+                let countdown, countdownClass, countdownText;
+                if (isActive) {
+                    countdown = getTimeUntil(session.close, utcHour, utcMinute, utcSecond);
+                    countdownClass = 'closing';
+                    countdownText = `Closes in ${formatCountdown(countdown)}`;
+                } else {
+                    countdown = getTimeUntil(session.open, utcHour, utcMinute, utcSecond);
+                    countdownClass = 'opening';
+                    countdownText = `Opens in ${formatCountdown(countdown)}`;
+                }
+                
+                const localOpen = utcHourToLocalTime(session.open);
+                const localClose = utcHourToLocalTime(session.close);
+                
+                html += `
+                    <div class="session-item ${isActive ? 'active' : 'closed'} ${isInOverlap ? 'best-hours' : ''}">
+                        <div class="session-icon">${session.icon}</div>
+                        <div class="session-details">
+                            <div class="session-name">
+                                ${session.name}
+                                ${session.isDST ? '<span class="session-dst-badge">DST</span>' : ''}
+                            </div>
+                            <div class="session-time">${session.open}:00 - ${session.close}:00 UTC</div>
+                            <div class="session-local-time">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Your time: ${localOpen} - ${localClose}
+                            </div>
+                        </div>
+                        <div class="session-right">
+                            <div class="session-status ${isActive ? 'open' : 'closed'}">
+                                ${isActive ? '● OPEN' : '○ CLOSED'}
+                            </div>
+                            <span class="session-countdown ${countdownClass}">${countdownText}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('sessionGrid').innerHTML = html;
+        }
+    </script>
+</body>
+</html>

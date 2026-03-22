@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Privacy Policy - ELITE WALL STREET. Learn how we collect, use, and protect your personal information.">
+    <meta name="keywords" content="privacy policy, data protection, elite wall street, user privacy">
+    <meta name="author" content="Elite Wall Street">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ff0033">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>Privacy Policy - ELITE WALL STREET</title>
+
+    <style>
+        /* ==================== LEGAL PAGE STYLES ==================== */
+        
+        .legal-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .legal-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .legal-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            font-size: 2rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .legal-title {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .legal-updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-full);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .legal-updated i {
+            color: var(--primary-red);
+        }
+
+        /* Content Sections */
+        .legal-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 35px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .legal-section:hover {
+            border-color: rgba(255, 0, 51, 0.3);
+            transform: translateX(5px);
+        }
+
+        .legal-section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .legal-section-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-md);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        .legal-section-title {
+            font-family: var(--font-primary);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .legal-section-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .legal-section-content p {
+            margin-bottom: 15px;
+        }
+
+        .legal-section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .legal-section-content ul {
+            margin: 15px 0;
+            padding-left: 10px;
+        }
+
+        .legal-section-content li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .legal-section-content li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-red);
+            border-radius: 50%;
+        }
+
+        .legal-section-content strong {
+            color: var(--text-primary);
+        }
+
+        .legal-section-content a {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .legal-section-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Highlight Box */
+        .legal-highlight {
+            background: rgba(255, 0, 51, 0.1);
+            border: 1px solid rgba(255, 0, 51, 0.2);
+            border-left: 4px solid var(--primary-red);
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .legal-highlight p {
+            margin: 0;
+        }
+
+        .legal-highlight i {
+            color: var(--primary-red);
+            margin-right: 10px;
+        }
+
+        /* Contact Box */
+        .legal-contact {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .legal-contact h3 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .legal-contact p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .legal-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: var(--shadow-glow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .legal-contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Table of Contents */
+        .legal-toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .legal-toc h3 {
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legal-toc h3 i {
+            color: var(--primary-red);
+        }
+
+        .legal-toc ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .legal-toc li {
+            list-style: none;
+        }
+
+        .legal-toc a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .legal-toc a:hover {
+            border-color: var(--primary-red);
+            color: var(--text-primary);
+            transform: translateX(5px);
+        }
+
+        .legal-toc a i {
+            color: var(--primary-red);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .legal-section {
+                padding: 25px 20px;
+            }
+
+            .legal-title {
+                font-size: 2rem;
+            }
+
+            .legal-section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .legal-toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 120px; height: 120px; border-radius: 10px;">
+            </div>
+            <div class="preloader-text">ELITE WALL STREET</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+            <div class="preloader-percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    
+    <!-- Animated Background -->
+    <div class="background-effects">
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="gradient-orb gradient-orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="mainHeader" class="main-header">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-icon">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 60px; height: 60px; border-radius: 8px;">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-elite">ELITE</span>
+                            <span class="logo-wallstreet">WALL STREET</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Home</span>
+                    </a></li>
+                    <li><a href="market.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                        <span class="nav-text">Market</span>
+                    </a></li>
+                    <li><a href="community.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
+                        <span class="nav-text">Community</span>
+                    </a></li>
+                    <li><a href="courses.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+                        <span class="nav-text">Courses</span>
+                    </a></li>
+                    <li><a href="about.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-info-circle"></i></span>
+                        <span class="nav-text">About</span>
+                    </a></li>
+                    <li><a href="contact.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-text">Contact</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="auth-buttons">
+                <a href="auth.html?mode=login" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="btn-signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </a>
+            </div>
+
+            <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px;">
+                    <div class="sidebar-logo-text">
+                        <span class="sidebar-elite">ELITE</span>
+                        <span class="sidebar-ws">WALL STREET</span>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="close-sidebar" aria-label="Close Menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="sidebar-links">
+                    <li class="sidebar-item">
+                        <a href="index.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-home"></i></div>
+                            <span class="sidebar-text">Home</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="market.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-chart-line"></i></div>
+                            <span class="sidebar-text">Market</span>
+                            <div class="sidebar-badge">LIVE</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="community.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-users"></i></div>
+                            <span class="sidebar-text">Community</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="courses.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <span class="sidebar-text">Courses</span>
+                            <div class="sidebar-badge hot">HOT</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="about.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-info-circle"></i></div>
+                            <span class="sidebar-text">About</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="contact.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-envelope"></i></div>
+                            <span class="sidebar-text">Contact</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-auth">
+                <a href="auth.html?mode=login" class="sidebar-btn login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="sidebar-btn signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up Free</span>
+                </a>
+            </div>
+
+            <div class="sidebar-social">
+                <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-link twitter"><i class="fab fa-x-twitter"></i></a>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>© 2026 Elite Wall Street</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content">
+        <section style="padding: 120px 0 100px;">
+            <div class="container">
+                <div class="legal-container">
+                    
+                    <!-- Header -->
+                    <div class="legal-header" data-aos="fade-up">
+                        <div class="legal-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <h1 class="legal-title">Privacy <span class="gradient-text">Policy</span></h1>
+                        <div class="legal-updated">
+                            <i class="fas fa-calendar-alt"></i>
+                            Last Updated: January 2026
+                        </div>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div class="legal-toc" data-aos="fade-up">
+                        <h3><i class="fas fa-list"></i> Table of Contents</h3>
+                        <ul>
+                            <li><a href="#info-collect"><i class="fas fa-chevron-right"></i> Information We Collect</a></li>
+                            <li><a href="#info-use"><i class="fas fa-chevron-right"></i> How We Use Your Information</a></li>
+                            <li><a href="#info-share"><i class="fas fa-chevron-right"></i> Information Sharing</a></li>
+                            <li><a href="#data-security"><i class="fas fa-chevron-right"></i> Data Security</a></li>
+                            <li><a href="#cookies"><i class="fas fa-chevron-right"></i> Cookies Policy</a></li>
+                            <li><a href="#your-rights"><i class="fas fa-chevron-right"></i> Your Rights</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Introduction -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h2 class="legal-section-title">Introduction</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>Welcome to Elite Wall Street ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information.</p>
+                            <p>This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <strong>elitewallstreet.com</strong> and use our services.</p>
+                            <div class="legal-highlight">
+                                <p><i class="fas fa-info-circle"></i> By using our website and services, you agree to the collection and use of information in accordance with this policy.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Information We Collect -->
+                    <div class="legal-section" data-aos="fade-up" id="info-collect">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h2 class="legal-section-title">Information We Collect</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p><strong>Personal Information:</strong></p>
+                            <ul>
+                                <li><strong>Account Information:</strong> Name, email address, phone number when you register</li>
+                                <li><strong>Profile Information:</strong> Username, profile picture, trading preferences</li>
+                                <li><strong>Contact Information:</strong> Information you provide when contacting support</li>
+                                <li><strong>Payment Information:</strong> Billing details for premium services (processed securely by payment providers)</li>
+                            </ul>
+                            <p><strong>Automatically Collected Information:</strong></p>
+                            <ul>
+                                <li><strong>Device Information:</strong> IP address, browser type, operating system</li>
+                                <li><strong>Usage Data:</strong> Pages visited, time spent, clicks, and interactions</li>
+                                <li><strong>Cookies:</strong> Small files stored on your device for functionality</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- How We Use Information -->
+                    <div class="legal-section" data-aos="fade-up" id="info-use">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h2 class="legal-section-title">How We Use Your Information</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>We use the information we collect for the following purposes:</p>
+                            <ul>
+                                <li><strong>Provide Services:</strong> To create and manage your account, deliver courses, and provide trading tools</li>
+                                <li><strong>Communication:</strong> To send you updates, newsletters, trading signals, and support responses</li>
+                                <li><strong>Improvement:</strong> To analyze usage patterns and improve our platform</li>
+                                <li><strong>Security:</strong> To detect and prevent fraud, unauthorized access, and other illegal activities</li>
+                                <li><strong>Legal Compliance:</strong> To comply with applicable laws and regulations</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Information Sharing -->
+                    <div class="legal-section" data-aos="fade-up" id="info-share">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-share-nodes"></i>
+                            </div>
+                            <h2 class="legal-section-title">Information Sharing</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p><strong>We do NOT sell your personal information.</strong> We may share your information only in the following circumstances:</p>
+                            <ul>
+                                <li><strong>Service Providers:</strong> With trusted third-party providers who assist in operating our platform (e.g., payment processors, email services)</li>
+                                <li><strong>Legal Requirements:</strong> When required by law, court order, or government request</li>
+                                <li><strong>Protection:</strong> To protect the rights, property, or safety of Elite Wall Street and our users</li>
+                                <li><strong>Consent:</strong> With your explicit consent for any other purpose</li>
+                            </ul>
+                            <div class="legal-highlight">
+                                <p><i class="fas fa-lock"></i> <strong>Your data is never sold to advertisers or third-party marketers.</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Security -->
+                    <div class="legal-section" data-aos="fade-up" id="data-security">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h2 class="legal-section-title">Data Security</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>We implement industry-standard security measures to protect your information:</p>
+                            <ul>
+                                <li><strong>SSL Encryption:</strong> All data transmitted is encrypted using SSL/TLS protocols</li>
+                                <li><strong>Secure Storage:</strong> Data is stored on secure servers with restricted access</li>
+                                <li><strong>Password Protection:</strong> Passwords are hashed and never stored in plain text</li>
+                                <li><strong>Regular Audits:</strong> We conduct regular security audits and vulnerability assessments</li>
+                                <li><strong>Access Controls:</strong> Only authorized personnel can access personal data</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Cookies Policy -->
+                    <div class="legal-section" data-aos="fade-up" id="cookies">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-cookie-bite"></i>
+                            </div>
+                            <h2 class="legal-section-title">Cookies Policy</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>We use cookies and similar tracking technologies to improve your experience:</p>
+                            <ul>
+                                <li><strong>Essential Cookies:</strong> Required for website functionality (login, preferences)</li>
+                                <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our site</li>
+                                <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+                            </ul>
+                            <p>You can control cookies through your browser settings. Disabling certain cookies may affect website functionality.</p>
+                        </div>
+                    </div>
+
+                    <!-- Your Rights -->
+                    <div class="legal-section" data-aos="fade-up" id="your-rights">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h2 class="legal-section-title">Your Rights</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>You have the following rights regarding your personal data:</p>
+                            <ul>
+                                <li><strong>Access:</strong> Request a copy of your personal data we hold</li>
+                                <li><strong>Correction:</strong> Request correction of inaccurate information</li>
+                                <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+                                <li><strong>Opt-Out:</strong> Unsubscribe from marketing communications anytime</li>
+                                <li><strong>Data Portability:</strong> Request your data in a portable format</li>
+                            </ul>
+                            <p>To exercise any of these rights, please contact us at <a href="mailto:support@elitewallstreet.com">support@elitewallstreet.com</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Children's Privacy -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-child"></i>
+                            </div>
+                            <h2 class="legal-section-title">Children's Privacy</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If you believe we have collected information from a minor, please contact us immediately.</p>
+                        </div>
+                    </div>
+
+                    <!-- Changes to Policy -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <h2 class="legal-section-title">Changes to This Policy</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by:</p>
+                            <ul>
+                                <li>Posting the new Privacy Policy on this page</li>
+                                <li>Updating the "Last Updated" date</li>
+                                <li>Sending an email notification (for significant changes)</li>
+                            </ul>
+                            <p>We encourage you to review this Privacy Policy periodically for any changes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="legal-contact" data-aos="fade-up">
+                        <h3>Questions About Privacy?</h3>
+                        <p>If you have any questions about this Privacy Policy, please contact us.</p>
+                        <a href="support.html" class="legal-contact-btn">
+                            <i class="fas fa-envelope"></i>
+                            Contact Support
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="mainFooter" class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 40px; height: 40px; border-radius: 8px;">
+                            <div class="footer-logo-text">
+                                <span class="footer-elite">ELITE</span>
+                                <span class="footer-ws">WALL STREET</span>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            The premier trading community for ambitious traders.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="market.html"><i class="fas fa-chevron-right"></i> Market</a></li>
+                            <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Resources</h4>
+                        <ul>
+                            <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Trading Tools</a></li>
+                            <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="support.html"><i class="fas fa-chevron-right"></i> Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-contact">
+                        <h4 class="footer-heading">Contact</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@elitewallstreet.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+923496518562</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2026 <span class="gradient-text">Elite Wall Street</span>. All Rights Reserved.</p>
+                    <div class="footer-legal">
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms-of-service.html">Terms of Service</a>
+                        <a href="risk-disclosure.html">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

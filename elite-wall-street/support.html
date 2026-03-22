@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Support Center - ELITE WALL STREET. Get help from our expert support team 24/7.">
+    <meta name="keywords" content="support, help, contact, elite wall street, trading support">
+    <meta name="author" content="Elite Wall Street">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ff0033">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>Support Center - ELITE WALL STREET</title>
+
+    <style>
+        /* ==================== SUPPORT PAGE STYLES ==================== */
+        
+        /* Contact Options Grid */
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 35px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 0, 51, 0.4);
+            box-shadow: 0 20px 50px rgba(255, 0, 51, 0.15);
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-card-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            font-size: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .contact-card:hover .contact-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact-card-icon.email {
+            background: linear-gradient(135deg, rgba(255, 0, 51, 0.2), rgba(255, 51, 102, 0.2));
+            color: var(--primary-red);
+            box-shadow: 0 0 30px rgba(255, 0, 51, 0.2);
+        }
+
+        .contact-card-icon.chat {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 200, 100, 0.2));
+            color: var(--success);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .contact-card-icon.whatsapp {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.2), rgba(30, 180, 80, 0.2));
+            color: #25d366;
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.2);
+        }
+
+        .contact-card-title {
+            font-family: var(--font-primary);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .contact-card-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .contact-card-value {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-full);
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-card-value i {
+            color: var(--primary-red);
+        }
+
+        .contact-card-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-secondary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        .contact-card-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .contact-card-btn.whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+        }
+
+        .contact-card-btn.whatsapp-btn:hover {
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Live Badge */
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            background: rgba(0, 255, 136, 0.15);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: var(--border-radius-full);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .live-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: livePulse 2s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        @media (max-width: 968px) {
+            .contact-form-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Form Info */
+        .form-info {
+            padding-right: 20px;
+        }
+
+        .form-info-title {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .form-info-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: rgba(255, 0, 51, 0.3);
+            transform: translateX(10px);
+        }
+
+        .info-card-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-md);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        .info-card-content h4 {
+            font-family: var(--font-secondary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .info-card-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Form */
+        .contact-form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 40px;
+        }
+
+        .contact-form-card h3 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-form-card h3 i {
+            color: var(--primary-red);
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-group label i {
+            color: var(--primary-red);
+            margin-right: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px 18px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 25px rgba(255, 0, 51, 0.2);
+            background: rgba(255, 0, 51, 0.05);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ff0033' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+
+        .form-group select option {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-secondary);
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: var(--shadow-glow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .form-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .form-submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-submit-btn .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: var(--text-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        .form-submit-btn.loading .spinner {
+            display: block;
+        }
+
+        .form-submit-btn.loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Response Time Notice */
+        .response-notice {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 25px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: var(--border-radius-lg);
+            margin-top: 25px;
+        }
+
+        .response-notice i {
+            font-size: 1.5rem;
+            color: var(--success);
+        }
+
+        .response-notice-text {
+            flex: 1;
+        }
+
+        .response-notice-text strong {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+        }
+
+        .response-notice-text span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Success Message */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .form-success-icon {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            background: rgba(0, 255, 136, 0.15);
+            border-radius: 50%;
+            font-size: 3rem;
+            color: var(--success);
+            animation: successPulse 2s infinite;
+        }
+
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 255, 136, 0.3); }
+        }
+
+        .form-success h3 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--success);
+        }
+
+        .form-success p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        /* Social Links Section */
+        .social-section {
+            text-align: center;
+            padding: 60px 0;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .social-section h3 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .social-section p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .social-links-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 25px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .social-link-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-link-card i {
+            font-size: 1.5rem;
+        }
+
+        .social-link-card.whatsapp:hover {
+            border-color: #25d366;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .social-link-card.whatsapp i {
+            color: #25d366;
+        }
+
+        .social-link-card.instagram:hover {
+            border-color: #e4405f;
+            box-shadow: 0 10px 30px rgba(228, 64, 95, 0.3);
+        }
+
+        .social-link-card.instagram i {
+            color: #e4405f;
+        }
+
+        .social-link-card.youtube:hover {
+            border-color: #ff0000;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .social-link-card.youtube i {
+            color: #ff0000;
+        }
+
+        .social-link-card.telegram:hover {
+            border-color: #0088cc;
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+        }
+
+        .social-link-card.telegram i {
+            color: #0088cc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-options {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-card {
+                padding: 25px 20px;
+            }
+
+            .form-info {
+                padding-right: 0;
+            }
+
+            .form-info-title {
+                font-size: 1.6rem;
+            }
+
+            .social-links-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-link-card {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 120px; height: 120px; border-radius: 10px;">
+            </div>
+            <div class="preloader-text">ELITE WALL STREET</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+            <div class="preloader-percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    
+    <!-- Animated Background -->
+    <div class="background-effects">
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="gradient-orb gradient-orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="mainHeader" class="main-header">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-icon">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 60px; height: 60px; border-radius: 8px;">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-elite">ELITE</span>
+                            <span class="logo-wallstreet">WALL STREET</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Home</span>
+                    </a></li>
+                    <li><a href="market.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                        <span class="nav-text">Market</span>
+                    </a></li>
+                    <li><a href="community.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
+                        <span class="nav-text">Community</span>
+                    </a></li>
+                    <li><a href="courses.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+                        <span class="nav-text">Courses</span>
+                    </a></li>
+                    <li><a href="about.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-info-circle"></i></span>
+                        <span class="nav-text">About</span>
+                    </a></li>
+                    <li><a href="contact.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-text">Contact</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="auth-buttons">
+                <a href="auth.html?mode=login" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="btn-signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </a>
+            </div>
+
+            <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px;">
+                    <div class="sidebar-logo-text">
+                        <span class="sidebar-elite">ELITE</span>
+                        <span class="sidebar-ws">WALL STREET</span>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="close-sidebar" aria-label="Close Menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="sidebar-links">
+                    <li class="sidebar-item">
+                        <a href="index.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-home"></i></div>
+                            <span class="sidebar-text">Home</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="market.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-chart-line"></i></div>
+                            <span class="sidebar-text">Market</span>
+                            <div class="sidebar-badge">LIVE</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="community.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-users"></i></div>
+                            <span class="sidebar-text">Community</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="courses.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <span class="sidebar-text">Courses</span>
+                            <div class="sidebar-badge hot">HOT</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="about.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-info-circle"></i></div>
+                            <span class="sidebar-text">About</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="contact.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-envelope"></i></div>
+                            <span class="sidebar-text">Contact</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-auth">
+                <a href="auth.html?mode=login" class="sidebar-btn login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="sidebar-btn signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up Free</span>
+                </a>
+            </div>
+
+            <div class="sidebar-social">
+                <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-link twitter"><i class="fab fa-x-twitter"></i></a>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>© 2026 Elite Wall Street</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section" style="min-height: 50vh;">
+            <div class="container" style="padding-top: 120px; padding-bottom: 40px;">
+                <div class="hero-content" data-aos="fade-up" style="text-align: center; max-width: 900px; margin: 0 auto;">
+                    <div class="hero-badge" style="margin: 0 auto 30px;">
+                        <span class="badge-icon"><i class="fas fa-headset"></i></span>
+                        <span class="badge-text">24/7 Support</span>
+                    </div>
+
+                    <h1 class="hero-title" style="text-align: center;">
+                        <span class="title-line">
+                            <span class="word">SUPPORT</span>
+                        </span>
+                        <span class="title-line">
+                            <span class="word gradient-text">CENTER</span>
+                        </span>
+                    </h1>
+
+                    <p class="hero-subtitle" style="text-align: center; max-width: 600px; margin: 0 auto;">
+                        We're here to help! Get in touch with our expert support team anytime, anywhere.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+        <section style="padding: 60px 0 100px;">
+            <div class="container">
+                
+                <!-- Contact Options -->
+                <div class="contact-options" data-aos="fade-up">
+                    <!-- Email Support -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="contact-card-title">Email Support</h3>
+                        <p class="contact-card-desc">Send us an email and we'll get back to you within 24 hours with a detailed response.</p>
+                        <div class="contact-card-value">
+                            <i class="fas fa-at"></i>
+                            support@elitewallstreet.com
+                        </div>
+                        <a href="mailto:support@elitewallstreet.com" class="contact-card-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Email
+                        </a>
+                    </div>
+
+                    <!-- Live Chat -->
+                    <div class="contact-card">
+                        <div class="live-badge">
+                            Online Now
+                        </div>
+                        <div class="contact-card-icon chat">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="contact-card-title">Live Chat</h3>
+                        <p class="contact-card-desc">Chat with our support team in real-time. Get instant answers to your questions.</p>
+                        <div class="contact-card-value">
+                            <i class="fas fa-clock"></i>
+                            Average: 2 min response
+                        </div>
+                        <button class="contact-card-btn" onclick="openLiveChat()">
+                            <i class="fas fa-comment-dots"></i>
+                            Start Chat
+                        </button>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3 class="contact-card-title">WhatsApp Support</h3>
+                        <p class="contact-card-desc">Message us directly on WhatsApp for quick assistance and real-time updates.</p>
+                        <div class="contact-card-value">
+                            <i class="fas fa-phone"></i>
+                            +92 349 6518562
+                        </div>
+                        <a href="https://wa.me/923496518562?text=Hi,%20I%20need%20help%20with%20Elite%20Wall%20Street" target="_blank" class="contact-card-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form Section -->
+                <div class="contact-form-section">
+                    <!-- Left Info -->
+                    <div class="form-info" data-aos="fade-right">
+                        <h2 class="form-info-title">
+                            <span>Send Us a</span><br>
+                            <span class="gradient-text">Message</span>
+                        </h2>
+                        <p class="form-info-desc">
+                            Have a question or need assistance? Fill out the form and our team will get back to you as soon as possible. We value every message and strive to provide the best support experience.
+                        </p>
+
+                        <div class="info-cards">
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="info-card-content">
+                                    <h4>Fast Response</h4>
+                                    <p>We usually reply within 24 hours</p>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div class="info-card-content">
+                                    <h4>Expert Team</h4>
+                                    <p>Professional traders ready to help</p>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <div class="info-card-content">
+                                    <h4>24/7 Available</h4>
+                                    <p>Support available around the clock</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Form -->
+                    <div class="contact-form-card" data-aos="fade-left">
+                        <!-- Form -->
+                        <form id="supportForm">
+                            <h3><i class="fas fa-edit"></i> Contact Form</h3>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Your Name</label>
+                                <input type="text" id="formName" placeholder="Enter your full name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-envelope"></i> Email Address</label>
+                                <input type="email" id="formEmail" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-tag"></i> Subject</label>
+                                <select id="formSubject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="billing">Billing Question</option>
+                                    <option value="courses">Courses & Education</option>
+                                    <option value="signals">Trading Signals</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-comment-alt"></i> Your Message</label>
+                                <textarea id="formMessage" placeholder="Write your message here..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="form-submit-btn" id="submitBtn">
+                                <span class="spinner"></span>
+                                <span class="btn-text">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Send Message
+                                </span>
+                            </button>
+
+                            <!-- Response Time Notice -->
+                            <div class="response-notice">
+                                <i class="fas fa-clock"></i>
+                                <div class="response-notice-text">
+                                    <strong>We usually reply within 24 hours</strong>
+                                    <span>For urgent matters, use Live Chat or WhatsApp</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div class="form-success" id="formSuccess">
+                            <div class="form-success-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h3>Message Sent Successfully!</h3>
+                            <p>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+                            <button class="btn-primary" onclick="resetForm()">
+                                <span class="btn-content">
+                                    <i class="fas fa-redo"></i>
+                                    <span>Send Another Message</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links Section -->
+                <div class="social-section" data-aos="fade-up">
+                    <h3>Connect With Us</h3>
+                    <p>Follow us on social media for daily updates, tips, and community news</p>
+                    <div class="social-links-grid">
+                        <a href="https://wa.me/923496518562" target="_blank" class="social-link-card whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="#" class="social-link-card instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="social-link-card youtube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="#" class="social-link-card telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                            <span>Telegram</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="mainFooter" class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 40px; height: 40px; border-radius: 8px;">
+                            <div class="footer-logo-text">
+                                <span class="footer-elite">ELITE</span>
+                                <span class="footer-ws">WALL STREET</span>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            The premier trading community for ambitious traders. Master the markets with expert guidance.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="social-btn twitter"><i class="fab fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="market.html"><i class="fas fa-chevron-right"></i> Market</a></li>
+                            <li><a href="community.html"><i class="fas fa-chevron-right"></i> Community</a></li>
+                            <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Resources</h4>
+                        <ul>
+                            <li><a href="trading-guide.html"><i class="fas fa-chevron-right"></i> Trading Guide</a></li>
+                            <li><a href="market-news.html"><i class="fas fa-chevron-right"></i> Market News</a></li>
+                            <li><a href="economic-calendar.html"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                            <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Trading Tools</a></li>
+                            <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="support.html"><i class="fas fa-chevron-right"></i> Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-contact">
+                        <h4 class="footer-heading">Contact Us</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@elitewallstreet.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+923496518562</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>LAHORE PAKISTAN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2026 <span class="gradient-text">Elite Wall Street</span>. All Rights Reserved.</p>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // ==================== SUPPORT PAGE FUNCTIONS ====================
+
+        // Live Chat Function
+        function openLiveChat() {
+            // You can integrate with Tawk.to, Crisp, or any chat widget
+            window.open('https://wa.me/923496518562?text=Hi,%20I%20need%20live%20support', '_blank');}
+            
+            // Example: Open WhatsApp as fallback
+            // window.open('https://wa.me/923496518562?text=Hi,%20I%20need%20help', '_blank');
+        
+
+        // Form Submission
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('supportForm');
+            const success = document.getElementById('formSuccess');
+            
+            // Show loading
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (Replace with actual API call)
+            setTimeout(function() {
+                // Hide form, show success
+                form.style.display = 'none';
+                success.classList.add('show');
+                
+                // Reset button
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                
+                // Log form data (for testing)
+                console.log('Form submitted:', {
+                    name: document.getElementById('formName').value,
+                    email: document.getElementById('formEmail').value,
+                    subject: document.getElementById('formSubject').value,
+                    message: document.getElementById('formMessage').value
+                });
+                
+            }, 2000);
+        });
+
+        // Reset Form
+        function resetForm() {
+            const form = document.getElementById('supportForm');
+            const success = document.getElementById('formSuccess');
+            
+            // Reset form fields
+            form.reset();
+            
+            // Show form, hide success
+            form.style.display = 'block';
+            success.classList.remove('show');
+        }
+    </script>
+</body>
+</html>

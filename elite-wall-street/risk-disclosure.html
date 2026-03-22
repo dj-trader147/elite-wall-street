@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Risk Disclosure - ELITE WALL STREET. Important risk warnings for trading forex, crypto, and other financial instruments.">
+    <meta name="keywords" content="risk disclosure, trading risk, forex risk, crypto risk, investment warning">
+    <meta name="author" content="Elite Wall Street">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ff0033">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>Risk Disclosure - ELITE WALL STREET</title>
+
+    <style>
+        /* ==================== LEGAL PAGE STYLES ==================== */
+        
+        .legal-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .legal-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .legal-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            font-size: 2rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .legal-title {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .legal-updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-full);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .legal-updated i {
+            color: var(--primary-red);
+        }
+
+        /* Important Warning Banner */
+        .risk-banner {
+            background: linear-gradient(135deg, rgba(255, 0, 51, 0.2), rgba(255, 68, 68, 0.2));
+            border: 2px solid var(--primary-red);
+            border-radius: var(--border-radius-xl);
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: pulseBorder 3s infinite;
+        }
+
+        @keyframes pulseBorder {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 51, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 0, 51, 0.5); }
+        }
+
+        .risk-banner-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            font-size: 2rem;
+            animation: warningPulse 1.5s infinite;
+        }
+
+        @keyframes warningPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .risk-banner h2 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .risk-banner p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .risk-banner strong {
+            color: var(--text-primary);
+        }
+
+        /* Content Sections */
+        .legal-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 35px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .legal-section:hover {
+            border-color: rgba(255, 0, 51, 0.3);
+            transform: translateX(5px);
+        }
+
+        .legal-section.danger {
+            border-color: rgba(255, 68, 68, 0.5);
+            background: linear-gradient(135deg, var(--bg-card), rgba(255, 68, 68, 0.05));
+        }
+
+        .legal-section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .legal-section-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-md);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        .legal-section-icon.warning {
+            background: linear-gradient(135deg, #ff4444, #ff6b6b);
+        }
+
+        .legal-section-title {
+            font-family: var(--font-primary);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .legal-section-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .legal-section-content p {
+            margin-bottom: 15px;
+        }
+
+        .legal-section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .legal-section-content ul {
+            margin: 15px 0;
+            padding-left: 10px;
+        }
+
+        .legal-section-content li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .legal-section-content li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-red);
+            border-radius: 50%;
+        }
+
+        .legal-section-content strong {
+            color: var(--text-primary);
+        }
+
+        .legal-section-content a {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .legal-section-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Highlight Box */
+        .legal-highlight {
+            background: rgba(255, 0, 51, 0.1);
+            border: 1px solid rgba(255, 0, 51, 0.2);
+            border-left: 4px solid var(--primary-red);
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .legal-highlight p {
+            margin: 0;
+        }
+
+        .legal-highlight i {
+            color: var(--primary-red);
+            margin-right: 10px;
+        }
+
+        /* Warning Box */
+        .legal-warning {
+            background: rgba(255, 68, 68, 0.15);
+            border: 1px solid rgba(255, 68, 68, 0.4);
+            border-left: 4px solid var(--danger);
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .legal-warning p {
+            margin: 0;
+            color: #ff6b6b;
+        }
+
+        .legal-warning i {
+            color: var(--danger);
+            margin-right: 10px;
+        }
+
+        /* Danger Stats */
+        .risk-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .risk-stat {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .risk-stat-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            background: rgba(255, 68, 68, 0.2);
+            border-radius: 50%;
+            font-size: 1.25rem;
+            color: var(--danger);
+        }
+
+        .risk-stat-number {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--danger);
+            display: block;
+        }
+
+        .risk-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Contact Box */
+        .legal-contact {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .legal-contact h3 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .legal-contact p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .legal-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: var(--shadow-glow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .legal-contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Acknowledgment Box */
+        .acknowledgment-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 200, 100, 0.1));
+            border: 2px solid var(--success);
+            border-radius: var(--border-radius-xl);
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .acknowledgment-box h3 {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            color: var(--success);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .acknowledgment-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .legal-section {
+                padding: 25px 20px;
+            }
+
+            .legal-title {
+                font-size: 2rem;
+            }
+
+            .legal-section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .risk-banner {
+                padding: 25px 20px;
+            }
+
+            .risk-banner h2 {
+                font-size: 1.25rem;
+            }
+
+            .risk-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 120px; height: 120px; border-radius: 10px;">
+            </div>
+            <div class="preloader-text">ELITE WALL STREET</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+            <div class="preloader-percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    
+    <!-- Animated Background -->
+    <div class="background-effects">
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="gradient-orb gradient-orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="mainHeader" class="main-header">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-icon">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 60px; height: 60px; border-radius: 8px;">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-elite">ELITE</span>
+                            <span class="logo-wallstreet">WALL STREET</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Home</span>
+                    </a></li>
+                    <li><a href="market.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                        <span class="nav-text">Market</span>
+                    </a></li>
+                    <li><a href="community.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
+                        <span class="nav-text">Community</span>
+                    </a></li>
+                    <li><a href="courses.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+                        <span class="nav-text">Courses</span>
+                    </a></li>
+                    <li><a href="about.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-info-circle"></i></span>
+                        <span class="nav-text">About</span>
+                    </a></li>
+                    <li><a href="contact.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-text">Contact</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="auth-buttons">
+                <a href="auth.html?mode=login" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="btn-signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </a>
+            </div>
+
+            <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px;">
+                    <div class="sidebar-logo-text">
+                        <span class="sidebar-elite">ELITE</span>
+                        <span class="sidebar-ws">WALL STREET</span>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="close-sidebar" aria-label="Close Menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="sidebar-links">
+                    <li class="sidebar-item">
+                        <a href="index.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-home"></i></div>
+                            <span class="sidebar-text">Home</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="market.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-chart-line"></i></div>
+                            <span class="sidebar-text">Market</span>
+                            <div class="sidebar-badge">LIVE</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="community.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-users"></i></div>
+                            <span class="sidebar-text">Community</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="courses.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <span class="sidebar-text">Courses</span>
+                            <div class="sidebar-badge hot">HOT</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="about.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-info-circle"></i></div>
+                            <span class="sidebar-text">About</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="contact.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-envelope"></i></div>
+                            <span class="sidebar-text">Contact</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-auth">
+                <a href="auth.html?mode=login" class="sidebar-btn login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="sidebar-btn signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up Free</span>
+                </a>
+            </div>
+
+            <div class="sidebar-social">
+                <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-link twitter"><i class="fab fa-x-twitter"></i></a>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>© 2026 Elite Wall Street</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content">
+        <section style="padding: 120px 0 100px;">
+            <div class="container">
+                <div class="legal-container">
+                    
+                    <!-- Header -->
+                    <div class="legal-header" data-aos="fade-up">
+                        <div class="legal-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h1 class="legal-title">Risk <span class="gradient-text">Disclosure</span></h1>
+                        <div class="legal-updated">
+                            <i class="fas fa-calendar-alt"></i>
+                            Last Updated: January 2026
+                        </div>
+                    </div>
+
+                    <!-- Important Warning Banner -->
+                    <div class="risk-banner" data-aos="fade-up">
+                        <div class="risk-banner-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h2>⚠️ High Risk Warning</h2>
+                        <p>Trading foreign exchange (Forex), cryptocurrencies, commodities, and other financial instruments carries a <strong>high level of risk</strong> and may not be suitable for all investors. You could lose <strong>some or all of your invested capital</strong>. Before deciding to trade, you should carefully consider your investment objectives, level of experience, and risk appetite.</p>
+                    </div>
+
+                    <!-- Risk Statistics -->
+                    <div class="risk-stats" data-aos="fade-up">
+                        <div class="risk-stat">
+                            <div class="risk-stat-icon">
+                                <i class="fas fa-chart-line-down"></i>
+                            </div>
+                            <span class="risk-stat-number">70-80%</span>
+                            <span class="risk-stat-label">Retail traders lose money</span>
+                        </div>
+                        <div class="risk-stat">
+                            <div class="risk-stat-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <span class="risk-stat-number">500:1</span>
+                            <span class="risk-stat-label">Max leverage available</span>
+                        </div>
+                        <div class="risk-stat">
+                            <div class="risk-stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span class="risk-stat-number">24/7</span>
+                            <span class="risk-stat-label">Market volatility</span>
+                        </div>
+                    </div>
+
+                    <!-- General Risk Warning -->
+                    <div class="legal-section danger" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon warning">
+                                <i class="fas fa-skull-crossbones"></i>
+                            </div>
+                            <h2 class="legal-section-title">General Risk Warning</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <div class="legal-warning">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>IMPORTANT:</strong> Trading involves substantial risk of loss and is not suitable for every investor!</p>
+                            </div>
+                            <p>The financial products offered on this website include Forex, Contracts for Difference (CFDs), cryptocurrencies, and other leveraged products. These products are complex instruments and come with a high risk of losing money rapidly.</p>
+                            <ul>
+                                <li><strong>You could lose more than your initial deposit</strong> when trading leveraged products</li>
+                                <li><strong>70-80% of retail investor accounts lose money</strong> when trading CFDs</li>
+                                <li><strong>Past performance is not indicative</strong> of future results</li>
+                                <li><strong>Never trade with money</strong> you cannot afford to lose</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Leverage Risk -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-balance-scale-right"></i>
+                            </div>
+                            <h2 class="legal-section-title">Leverage Risk</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>Leverage allows you to control larger positions with a smaller amount of capital. While leverage can <strong>amplify profits</strong>, it can also <strong>magnify losses</strong>.</p>
+                            <ul>
+                                <li><strong>High Leverage = High Risk:</strong> A small market movement can result in significant gains or losses</li>
+                                <li><strong>Margin Calls:</strong> If the market moves against you, you may be required to deposit additional funds</li>
+                                <li><strong>Liquidation:</strong> Your positions may be closed automatically if you don't have sufficient margin</li>
+                                <li><strong>Losses Can Exceed Deposits:</strong> You could lose more than your initial investment</li>
+                            </ul>
+                            <div class="legal-highlight">
+                                <p><i class="fas fa-info-circle"></i> <strong>Example:</strong> With 100:1 leverage, a 1% market move can result in a 100% gain OR a 100% loss of your margin.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Market Volatility -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <h2 class="legal-section-title">Market Volatility</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>Financial markets are subject to <strong>extreme volatility</strong> which can cause rapid price changes:</p>
+                            <ul>
+                                <li><strong>Economic Events:</strong> News releases, interest rate decisions, and economic data can cause sudden price movements</li>
+                                <li><strong>Geopolitical Events:</strong> Political instability, elections, and conflicts can impact markets</li>
+                                <li><strong>Market Gaps:</strong> Prices can "gap" over weekends or during major events, potentially triggering stop losses at worse prices</li>
+                                <li><strong>Liquidity Risk:</strong> During volatile periods, it may be difficult to execute trades at desired prices</li>
+                                <li><strong>Slippage:</strong> Your order may be filled at a different price than expected</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Cryptocurrency Risks -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fab fa-bitcoin"></i>
+                            </div>
+                            <h2 class="legal-section-title">Cryptocurrency Risks</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>Cryptocurrencies are <strong>extremely volatile</strong> and carry additional risks:</p>
+                            <ul>
+                                <li><strong>Extreme Volatility:</strong> Prices can swing 20-50% or more in a single day</li>
+                                <li><strong>Regulatory Risk:</strong> Governments may ban or restrict cryptocurrency trading</li>
+                                <li><strong>Technology Risk:</strong> Blockchain networks can experience technical issues</li>
+                                <li><strong>Security Risk:</strong> Exchanges and wallets can be hacked</li>
+                                <li><strong>No Intrinsic Value:</strong> Cryptocurrencies have no underlying asset backing</li>
+                                <li><strong>Market Manipulation:</strong> Crypto markets are less regulated and prone to manipulation</li>
+                            </ul>
+                            <div class="legal-warning">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>Warning:</strong> You could lose your entire cryptocurrency investment!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- No Financial Advice -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h2 class="legal-section-title">No Financial Advice</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p><strong>Elite Wall Street does NOT provide financial, investment, or trading advice.</strong></p>
+                            <ul>
+                                <li>Our content is for <strong>educational and informational purposes only</strong></li>
+                                <li>Trading signals and analysis are <strong>opinions, not recommendations</strong></li>
+                                <li>We are <strong>not licensed financial advisors</strong></li>
+                                <li>You should <strong>consult a qualified financial advisor</strong> before making investment decisions</li>
+                                <li>All trading decisions are <strong>your sole responsibility</strong></li>
+                            </ul>
+                            <div class="legal-highlight">
+                                <p><i class="fas fa-info-circle"></i> <strong>Remember:</strong> What works for one trader may not work for another. Develop your own strategy and never blindly follow signals.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Past Performance -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h2 class="legal-section-title">Past Performance Disclaimer</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <div class="legal-warning">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>Past performance is NOT indicative of future results!</strong></p>
+                            </div>
+                            <p>Any performance data, testimonials, or results shown on our website:</p>
+                            <ul>
+                                <li><strong>Do not guarantee</strong> similar results in the future</li>
+                                <li><strong>May not be representative</strong> of all users' experiences</li>
+                                <li><strong>May include hypothetical</strong> or simulated results</li>
+                                <li><strong>Do not account</strong> for all market conditions</li>
+                                <li><strong>May not include</strong> all trading costs and fees</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Your Responsibility -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h2 class="legal-section-title">Your Responsibility</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>Before engaging in trading, you should:</p>
+                            <ul>
+                                <li><strong>Assess your financial situation:</strong> Only trade with money you can afford to lose</li>
+                                <li><strong>Understand the products:</strong> Learn how forex, CFDs, and crypto work before trading</li>
+                                <li><strong>Evaluate your risk tolerance:</strong> Determine how much risk you're comfortable with</li>
+                                <li><strong>Seek professional advice:</strong> Consult a licensed financial advisor if needed</li>
+                                <li><strong>Practice first:</strong> Use demo accounts before trading real money</li>
+                                <li><strong>Educate yourself:</strong> Continuously learn about markets and trading strategies</li>
+                                <li><strong>Use risk management:</strong> Always use stop losses and proper position sizing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Regulatory Information -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <h2 class="legal-section-title">Regulatory Information</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>Please note the following:</p>
+                            <ul>
+                                <li><strong>Elite Wall Street is an educational platform</strong> and does not execute trades on your behalf</li>
+                                <li>We are <strong>not a broker or financial institution</strong></li>
+                                <li>Trading must be done through <strong>licensed and regulated brokers</strong></li>
+                                <li>Different countries have <strong>different regulations</strong> for trading</li>
+                                <li>It is <strong>your responsibility</strong> to ensure trading is legal in your jurisdiction</li>
+                                <li>Some products may <strong>not be available</strong> in certain countries</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Technical Risks -->
+                    <div class="legal-section" data-aos="fade-up">
+                        <div class="legal-section-header">
+                            <div class="legal-section-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h2 class="legal-section-title">Technical Risks</h2>
+                        </div>
+                        <div class="legal-section-content">
+                            <p>Trading involves technical risks that are beyond our control:</p>
+                            <ul>
+                                <li><strong>Internet Connectivity:</strong> Loss of internet connection can prevent trade execution</li>
+                                <li><strong>Platform Outages:</strong> Trading platforms may experience downtime</li>
+                                <li><strong>Software Errors:</strong> Bugs in trading software can cause unexpected behavior</li>
+                                <li><strong>Data Delays:</strong> Market data may be delayed or inaccurate</li>
+                                <li><strong>Cyber Security:</strong> Risk of hacking and unauthorized access</li>
+                            </ul>
+                            <p>Elite Wall Street is <strong>not responsible</strong> for any losses caused by technical issues.</p>
+                        </div>
+                    </div>
+
+                    <!-- Acknowledgment -->
+                    <div class="acknowledgment-box" data-aos="fade-up">
+                        <h3><i class="fas fa-check-circle"></i> Acknowledgment</h3>
+                        <p>By using Elite Wall Street's website and services, you acknowledge that you have read, understood, and agree to this Risk Disclosure. You understand that trading carries significant risk and that <strong>you are solely responsible for your trading decisions and any resulting losses</strong>.</p>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="legal-contact" data-aos="fade-up">
+                        <h3>Questions About Risk?</h3>
+                        <p>If you have any questions about the risks involved in trading, please contact us.</p>
+                        <a href="support.html" class="legal-contact-btn">
+                            <i class="fas fa-envelope"></i>
+                            Contact Support
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="mainFooter" class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/images/logo.jpeg" alt="Elite Wall Street" style="width: 40px; height: 40px; border-radius: 8px;">
+                            <div class="footer-logo-text">
+                                <span class="footer-elite">ELITE</span>
+                                <span class="footer-ws">WALL STREET</span>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            The premier trading community for ambitious traders.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="market.html"><i class="fas fa-chevron-right"></i> Market</a></li>
+                            <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Resources</h4>
+                        <ul>
+                            <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Trading Tools</a></li>
+                            <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="support.html"><i class="fas fa-chevron-right"></i> Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-contact">
+                        <h4 class="footer-heading">Contact</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@elitewallstreet.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+923496518562</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2026 <span class="gradient-text">Elite Wall Street</span>. All Rights Reserved.</p>
+                    <div class="footer-legal">
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms-of-service.html">Terms of Service</a>
+                        <a href="risk-disclosure.html">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

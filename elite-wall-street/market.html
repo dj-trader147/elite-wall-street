@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Live Market Data - Real-time crypto, forex, and commodity prices">
+    <meta name="keywords" content="market data, live prices, crypto, forex, trading charts">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>Live Markets | Elite Wall Street</title>
+    
+    <style>
+        /* Market Page Specific Styles */
+        .market-hero {
+            padding: calc(var(--header-height) + 60px) 24px 60px;
+            background: linear-gradient(180deg, rgba(255, 0, 51, 0.1) 0%, transparent 100%);
+        }
+
+        .market-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .market-title {
+            font-family: var(--font-primary);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .market-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .market-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .market-tab {
+            padding: 12px 28px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-family: var(--font-secondary);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .market-tab.active {
+            background: var(--gradient-primary);
+            border-color: var(--primary-red);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        .market-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-red);
+        }
+
+        .market-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .asset-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .asset-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .asset-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 0, 51, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .asset-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .asset-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .asset-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: contain;
+            background: var(--bg-glass);
+            padding: 8px;
+        }
+
+        .asset-info h3 {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .asset-info span {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .asset-price {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .asset-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .asset-change.positive {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--success);
+        }
+
+        .asset-change.negative {
+            background: rgba(255, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .asset-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .asset-stat {
+            text-align: center;
+        }
+
+        .asset-stat-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+        }
+
+        .asset-stat-value {
+            font-family: var(--font-secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .asset-sparkline {
+            height: 60px;
+            margin: 16px 0;
+        }
+
+        /* Chart Modal */
+        .chart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .chart-modal.active {
+            display: flex;
+        }
+
+        .chart-modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow: auto;
+            padding: 32px;
+            position: relative;
+        }
+
+        .chart-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .chart-modal-close:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chart-info h2 {
+            font-family: var(--font-primary);
+            font-size: 1.75rem;
+            margin-bottom: 8px;
+        }
+
+        .chart-current-price {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .chart-timeframes {
+            display: flex;
+            gap: 8px;
+        }
+
+        .timeframe-btn {
+            padding: 8px 16px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: var(--font-secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeframe-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-red);
+        }
+
+        .chart-container {
+            height: 400px;
+            margin-bottom: 24px;
+        }
+
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            color: var(--text-secondary);
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--primary-red);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 120px; height: 120px; border-radius: 10px; display: block;">
+            </div>
+            <div class="preloader-text">ELITE WALL STREET</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+            <div class="preloader-percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="gradient-orb gradient-orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader" class="main-header">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-icon">
+                            <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 60px; height: 60px; border-radius: 8px; display: block;">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-elite">ELITE</span>
+                            <span class="logo-wallstreet">WALL STREET</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Home</span>
+                    </a></li>
+                    <li><a href="market.html" class="nav-link active">
+                        <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                        <span class="nav-text">Market</span>
+                    </a></li>
+                    <li><a href="community.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
+                        <span class="nav-text">Community</span>
+                    </a></li>
+                    <li><a href="courses.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+                        <span class="nav-text">Courses</span>
+                    </a></li>
+                    <li><a href="about.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-info-circle"></i></span>
+                        <span class="nav-text">About</span>
+                    </a></li>
+                    <li><a href="contact.html" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-text">Contact</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="auth-buttons">
+                <a href="auth.html?mode=login" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="btn-signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </a>
+            </div>
+
+            <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px; display: block;">
+                    <div class="sidebar-logo-text">
+                        <span class="sidebar-elite">ELITE</span>
+                        <span class="sidebar-ws">WALL STREET</span>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="sidebar-links">
+                    <li class="sidebar-item">
+                        <a href="index.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-home"></i></div>
+                            <span class="sidebar-text">Home</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="market.html" class="sidebar-link active">
+                            <div class="sidebar-icon"><i class="fas fa-chart-line"></i></div>
+                            <span class="sidebar-text">Market</span>
+                            <div class="sidebar-badge">LIVE</div>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="community.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-users"></i></div>
+                            <span class="sidebar-text">Community</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="courses.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <span class="sidebar-text">Courses</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="about.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-info-circle"></i></div>
+                            <span class="sidebar-text">About</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="contact.html" class="sidebar-link">
+                            <div class="sidebar-icon"><i class="fas fa-envelope"></i></div>
+                            <span class="sidebar-text">Contact</span>
+                            <div class="sidebar-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-number" data-count="5247">0</span>
+                        <span class="stat-label">Members</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-number" data-count="1532">0</span>
+                        <span class="stat-label">Trades</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-auth">
+                <a href="auth.html?mode=login" class="sidebar-btn login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="auth.html?mode=signup" class="sidebar-btn signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up Free</span>
+                </a>
+            </div>
+
+            <div class="sidebar-social">
+                <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-link twitter"><i class="fab fa-x-twitter"></i></a>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>© 2026 Elite Wall Street</p>
+                <p>All Rights Reserved</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content">
+        <!-- Market Hero -->
+        <section class="market-hero">
+            <div class="market-hero-content">
+                <h1 class="market-title" data-aos="fade-up">
+                    <span class="gradient-text">Live Markets</span>
+                </h1>
+                <p class="market-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    Real-time prices for crypto, forex, and commodities
+                </p>
+
+                <div class="market-tabs" data-aos="fade-up" data-aos-delay="200">
+                    <button class="market-tab active" data-category="all">
+                        <i class="fas fa-globe"></i> All Markets
+                    </button>
+                    <button class="market-tab" data-category="crypto">
+                        <i class="fab fa-bitcoin"></i> Cryptocurrency
+                    </button>
+                    <button class="market-tab" data-category="forex">
+                        <i class="fas fa-dollar-sign"></i> Forex
+                    </button>
+                    <button class="market-tab" data-category="commodities">
+                        <i class="fas fa-cubes"></i> Commodities
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Grid -->
+        <div class="market-grid" id="marketGrid">
+            <div class="loading-state">
+                <div class="loader"></div>
+                <p>Loading market data...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chart Modal -->
+    <div id="chartModal" class="chart-modal">
+        <div class="chart-modal-content">
+            <button class="chart-modal-close" id="closeChartModal">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="chart-header">
+                <div class="chart-info">
+                    <h2 id="chartAssetName">Bitcoin</h2>
+                    <div class="chart-current-price" id="chartCurrentPrice">$0.00</div>
+                    <div class="asset-change positive" id="chartPriceChange">
+                        <i class="fas fa-arrow-up"></i> 0.00%
+                    </div>
+                </div>
+                <div class="chart-timeframes">
+                    <button class="timeframe-btn" data-timeframe="1">1D</button>
+                    <button class="timeframe-btn active" data-timeframe="7">7D</button>
+                    <button class="timeframe-btn" data-timeframe="30">30D</button>
+                    <button class="timeframe-btn" data-timeframe="90">90D</button>
+                    <button class="timeframe-btn" data-timeframe="365">1Y</button>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="assetChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="mainFooter" class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px; display: block;">
+                            <div class="footer-logo-text">
+                                <span class="footer-elite">ELI TE</span>
+                                <span class="footer-ws">WALL STREET</span>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            The premier trading community for ambitious traders.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="social-btn twitter"><i class="fab fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="market.html"><i class="fas fa-chevron-right"></i> Market</a></li>
+                            <li><a href="community.html"><i class="fas fa-chevron-right"></i> Community</a></li>
+                            <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- ✅ UPDATED RESOURCES SECTION -->
+                    <div class="footer-links">
+                        <h4 class="footer-heading">Resources</h4>
+                        <ul>
+                            <li><a href="trading-guide.html"><i class="fas fa-chevron-right"></i> Trading Guide</a></li>
+                            <li><a href="market-news.html"><i class="fas fa-chevron-right"></i> Market News</a></li>
+                            <li><a href="economic-calendar.html"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                            <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Trading Tools</a></li>
+                            <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="support.html"><i class="fas fa-chevron-right"></i> Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-contact">
+                        <h4 class="footer-heading">Contact Us</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@elitewallstreet.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        © 2026 <span class="gradient-text">Elite Wall Street</span>. All Rights Reserved.
+                    </p>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Market Page Specific JavaScript
+        let currentCategory = 'all';
+        let marketData = [];
+        let currentAssetId = null; // ✅ ADDED - Track which asset chart is open
+
+        // Load Market Data
+        function loadMarketData() {
+            const grid = document.getElementById('marketGrid');
+            
+            API.getMarketData('usd', 20)
+                .then(function(data) {
+                    marketData = data.map(coin => ({
+                        ...coin,
+                        category: 'crypto'
+                    }));
+
+                    // Add forex/commodities (simulated)
+                    marketData.push(
+                        { id: 'gold', name: 'Gold', symbol: 'XAU', image: 'https://img.icons8.com/color/48/gold-bars.png', current_price: 2350, price_change_percentage_24h: 0.5, market_cap: 0, category: 'commodities' },
+                        { id: 'silver', name: 'Silver', symbol: 'XAG', image: 'https://img.icons8.com/color/48/silver-bars.png', current_price: 28.5, price_change_percentage_24h: -0.3, market_cap: 0, category: 'commodities' },
+                        { id: 'oil', name: 'Crude Oil', symbol: 'OIL', image: 'https://img.icons8.com/color/48/oil-industry.png', current_price: 78.5, price_change_percentage_24h: 1.2, market_cap: 0, category: 'commodities' },
+                        { id: 'eurusd', name: 'EUR/USD', symbol: 'EUR', image: 'https://img.icons8.com/color/48/euro.png', current_price: 1.085, price_change_percentage_24h: 0.1, market_cap: 0, category: 'forex' },
+                        { id: 'gbpusd', name: 'GBP/USD', symbol: 'GBP', image: 'https://img.icons8.com/color/48/british-pound.png', current_price: 1.268, price_change_percentage_24h: -0.2, market_cap: 0, category: 'forex' }
+                    );
+
+                    renderMarketGrid();
+                })
+                .catch(function(error) {
+                    grid.innerHTML = '<div class="error-state"><p>Failed to load</p><button class="btn-primary" onclick="loadMarketData()">Retry</button></div>';
+                });
+        }
+
+        // Render Market Grid
+        function renderMarketGrid() {
+            const grid = document.getElementById('marketGrid');
+            grid.innerHTML = '';
+
+            const filtered = marketData.filter(item => 
+                currentCategory === 'all' || item.category === currentCategory
+            );
+
+            filtered.forEach((item, index) => {
+                const isPositive = item.price_change_percentage_24h >= 0;
+                const card = document.createElement('div');
+                card.className = 'asset-card';
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', (index * 50));
+
+                card.innerHTML = `
+                    <div class="asset-header">
+                        <img src="${item.image}" alt="${item.symbol}" class="asset-icon" onerror="this.src='https://via.placeholder.com/48'">
+                        <div class="asset-info">
+                            <h3>${item.symbol.toUpperCase()}</h3>
+                            <span>${item.name}</span>
+                        </div>
+                    </div>
+                    <div class="asset-price">$${item.current_price.toLocaleString()}</div>
+                    <div class="asset-change ${isPositive ? 'positive' : 'negative'}">
+                        <i class="fas fa-arrow-${isPositive ? 'up' : 'down'}"></i>
+                        ${Math.abs(item.price_change_percentage_24h).toFixed(2)}%
+                    </div>
+                    ${item.market_cap > 0 ? `
+                    <div class="asset-stats">
+                        <div class="asset-stat">
+                            <span class="asset-stat-label">Market Cap</span>
+                            <span class="asset-stat-value">$${Utils.formatCompact(item.market_cap)}</span>
+                        </div>
+                        <div class="asset-stat">
+                            <span class="asset-stat-label">24h Volume</span>
+                            <span class="asset-stat-value">$${Utils.formatCompact(item.total_volume || 0)}</span>
+                        </div>
+                    </div>
+                    ` : ''}
+                `;
+
+                card.addEventListener('click', () => openChartModal(item));
+                grid.appendChild(card);
+            });
+
+            if (typeof AOS !== 'undefined') AOS.refresh();
+        }
+
+        // Open Chart Modal
+        function openChartModal(asset) {
+            currentAssetId = asset.id; // ✅ ADDED - Save current asset ID
+            const modal = document.getElementById('chartModal');
+            modal.classList.add('active');
+
+            document.getElementById('chartAssetName').textContent = asset.name;
+            document.getElementById('chartCurrentPrice').textContent = '$' + asset.current_price.toLocaleString();
+            
+            const changeEl = document.getElementById('chartPriceChange');
+            const isPositive = asset.price_change_percentage_24h >= 0;
+            changeEl.className = 'asset-change ' + (isPositive ? 'positive' : 'negative');
+            changeEl.innerHTML = `<i class="fas fa-arrow-${isPositive ? 'up' : 'down'}"></i> ${Math.abs(asset.price_change_percentage_24h).toFixed(2)}%`;
+
+            // ✅ ADDED - Reset active button to default (7D)
+            document.querySelectorAll('.timeframe-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-timeframe') === '7') {
+                    btn.classList.add('active');
+                }
+            });
+
+            loadAssetChart(asset.id, 7); // ✅ Default 7 days
+        }
+
+        // ✅ UPDATED - Load Asset Chart with dynamic timeframe
+        function loadAssetChart(assetId, days) {
+            days = days || 7; // Default 7 days
+            
+            let points, min, max;
+            
+            // Set data points based on timeframe
+            if (days === 1) {
+                points = 24; // 24 hours
+            } else if (days === 7) {
+                points = 28; // 7 days (4 points per day)
+            } else if (days === 30) {
+                points = 30; // 30 days
+            } else if (days === 90) {
+                points = 45; // 90 days (every 2 days)
+            } else if (days === 365) {
+                points = 52; // 1 year (weekly)
+            } else {
+                points = 24;
+            }
+
+            const labels = Charts.generateTimeLabels(points);
+            const data = Charts.generateRandomData(points, 50, 150);
+
+            // ✅ Destroy old chart and create new one
+            Charts.destroyChart('assetChart');
+            Charts.createLineChart('assetChart', labels, data);
+        }
+
+        // ✅ ADDED - Timeframe Button Click Handler
+        document.querySelectorAll('.timeframe-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.timeframe-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get timeframe value
+                const days = parseInt(this.getAttribute('data-timeframe'));
+                
+                // Reload chart with new timeframe
+                if (currentAssetId) {
+                    loadAssetChart(currentAssetId, days);
+                }
+            });
+        });
+
+        // Close Modal
+        document.getElementById('closeChartModal').addEventListener('click', () => {
+            document.getElementById('chartModal').classList.remove('active');
+            Charts.destroyChart('assetChart'); // ✅ Clean up chart on close
+        });
+
+        // Category Tabs
+        document.querySelectorAll('.market-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.market-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.getAttribute('data-category');
+                renderMarketGrid();
+            });
+        });
+
+        // Initialize
+        Utils.ready(() => {
+            loadMarketData();
+        });
+    </script>
+</body>
+</html>

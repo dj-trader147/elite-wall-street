@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Trading Courses - Learn from expert traders">
+    
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>Courses & Offers | Elite Wall Street</title>
+    
+    <style>
+        .courses-hero {
+            padding: calc(var(--header-height) + 80px) 24px 60px;
+            text-align: center;
+        }
+
+        .courses-title {
+            font-family: var(--font-primary);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            font-family: var(--font-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gradient-primary);
+            border-color: var(--primary-red);
+            color: white;
+        }
+
+        .courses-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-red);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .course-content {
+            padding: 24px;
+        }
+
+        .course-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 0, 51, 0.1);
+            border: 1px solid rgba(255, 0, 51, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-red);
+            margin-bottom: 12px;
+        }
+
+        .course-badge.hot {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+
+        .course-title {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .course-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .course-price {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .course-price .original {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+
+        .course-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .course-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .course-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-secondary);
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .course-btn:hover {
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.02);
+        }
+
+        .promo-banner {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 0, 51, 0.2) 0%, rgba(255, 51, 102, 0.1) 100%);
+            border: 1px solid rgba(255, 0, 51, 0.3);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .promo-title {
+            font-family: var(--font-primary);
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .promo-code {
+            display: inline-block;
+            padding: 8px 24px;
+            background: var(--primary-red);
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 16px 0;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 120px; height: 120px; border-radius: 10px; display: block;">
+            </div>
+            <div class="preloader-text">ELITE WALL STREET</div>
+            <div class="preloader-bar"><div class="preloader-progress"></div></div>
+            <div class="preloader-percentage">0%</div>
+        </div>
+    </div>
+
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    <div class="background-effects">
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <header id="mainHeader" class="main-header">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-icon">
+                            <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 60px; height: 60px; border-radius: 8px; display: block;">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-elite">ELITE</span>
+                            <span class="logo-wallstreet">WALL STREET</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link"><span class="nav-icon"><i class="fas fa-home"></i></span><span>Home</span></a></li>
+                    <li><a href="market.html" class="nav-link"><span class="nav-icon"><i class="fas fa-chart-line"></i></span><span>Market</span></a></li>
+                    <li><a href="community.html" class="nav-link"><span class="nav-icon"><i class="fas fa-users"></i></span><span>Community</span></a></li>
+                    <li><a href="courses.html" class="nav-link active"><span class="nav-icon"><i class="fas fa-graduation-cap"></i></span><span>Courses</span></a></li>
+                    <li><a href="about.html" class="nav-link"><span class="nav-icon"><i class="fas fa-info-circle"></i></span><span>About</span></a></li>
+                    <li><a href="contact.html" class="nav-link"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>Contact</span></a></li>
+                </ul>
+            </div>
+            <div class="auth-buttons">
+                <a href="auth.html?mode=login" class="btn-login"><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                <a href="auth.html?mode=signup" class="btn-signup"><i class="fas fa-user-plus"></i><span>Sign Up</span></a>
+            </div>
+            <button id="hamburgerBtn" class="hamburger-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px; display: block;">
+                    <div class="sidebar-logo-text">
+                        <span class="sidebar-elite">ELITE</span>
+                        <span class="sidebar-ws">WALL STREET</span>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="close-sidebar"><i class="fas fa-times"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="sidebar-links">
+                    <li class="sidebar-item"><a href="index.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-home"></i></div><span class="sidebar-text">Home</span></a></li>
+                    <li class="sidebar-item"><a href="market.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-chart-line"></i></div><span class="sidebar-text">Market</span></a></li>
+                    <li class="sidebar-item"><a href="community.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-users"></i></div><span class="sidebar-text">Community</span></a></li>
+                    <li class="sidebar-item"><a href="courses.html" class="sidebar-link active"><div class="sidebar-icon"><i class="fas fa-graduation-cap"></i></div><span class="sidebar-text">Courses</span></a></li>
+                    <li class="sidebar-item"><a href="about.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-info-circle"></i></div><span class="sidebar-text">About</span></a></li>
+                    <li class="sidebar-item"><a href="contact.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-envelope"></i></div><span class="sidebar-text">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-auth">
+                <a href="auth.html?mode=login" class="sidebar-btn login"><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                <a href="auth.html?mode=signup" class="sidebar-btn signup"><i class="fas fa-user-plus"></i><span>Sign Up</span></a>
+            </div>
+            <div class="sidebar-social">
+                <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="sidebar-footer"><p>© 2026 Elite Wall Street</p></div>
+        </div>
+    </aside>
+
+    <main id="mainContent" class="main-content">
+        <section class="courses-hero">
+            <h1 class="courses-title" data-aos="fade-up">
+                Premium <span class="gradient-text">Trading Courses</span>
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Master the markets with our expert-led courses
+            </p>
+
+            <div class="filter-tabs" data-aos="fade-up" data-aos-delay="200">
+                <button class="filter-btn active" data-filter="all">All Courses</button>
+                <button class="filter-btn" data-filter="beginner">Beginner</button>
+                <button class="filter-btn" data-filter="advanced">Advanced</button>
+                <button class="filter-btn" data-filter="crypto">Crypto</button>
+                <button class="filter-btn" data-filter="forex">Forex</button>
+            </div>
+        </section>
+
+        <div class="promo-banner" data-aos="fade-up">
+            <h3 class="promo-title">🔥 Limited Time Offer - 50% OFF!</h3>
+            <p class="text-secondary">Use code at checkout for exclusive discount</p>
+            <div class="promo-code">ELITE50</div>
+            <p class="text-muted">Expires in 48 hours</p>
+        </div>
+
+        <div class="courses-grid" id="coursesGrid">
+            <!-- Course 1 -->
+            <div class="course-card" data-aos="fade-up" data-category="beginner">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400" alt="Course" class="course-image">
+                <div class="course-content">
+                    <span class="course-badge hot">BESTSELLER</span>
+                    <h3 class="course-title">Trading Fundamentals Masterclass</h3>
+                    <p class="course-description">Complete beginner's guide to trading. Learn technical analysis, risk management, and trading psychology.</p>
+                    <div class="course-stats">
+                        <span class="course-stat"><i class="fas fa-clock"></i> 12 Hours</span>
+                        <span class="course-stat"><i class="fas fa-play-circle"></i> 45 Lessons</span>
+                        <span class="course-stat"><i class="fas fa-star"></i> 4.9</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-price">
+                            <span class="original">$299</span>
+                            $149
+                        </div>
+                    </div>
+                    <button class="course-btn">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="course-card" data-aos="fade-up" data-aos-delay="100" data-category="crypto">
+                <img src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=400" alt="Course" class="course-image">
+                <div class="course-content">
+                    <span class="course-badge">CRYPTO</span>
+                    <h3 class="course-title">Cryptocurrency Trading Pro</h3>
+                    <p class="course-description">Master Bitcoin, Ethereum, and altcoin trading. Learn DeFi, NFTs, and blockchain analysis.</p>
+                    <div class="course-stats">
+                        <span class="course-stat"><i class="fas fa-clock"></i> 18 Hours</span>
+                        <span class="course-stat"><i class="fas fa-play-circle"></i> 62 Lessons</span>
+                        <span class="course-stat"><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-price">
+                            <span class="original">$399</span>
+                            $199
+                        </div>
+                    </div>
+                    <button class="course-btn">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="course-card" data-aos="fade-up" data-aos-delay="200" data-category="forex">
+                <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400" alt="Course" class="course-image">
+                <div class="course-content">
+                    <span class="course-badge">FOREX</span>
+                    <h3 class="course-title">Forex Trading Secrets</h3>
+                    <p class="course-description">Learn currency trading strategies used by professional forex traders worldwide.</p>
+                    <div class="course-stats">
+                        <span class="course-stat"><i class="fas fa-clock"></i> 15 Hours</span>
+                        <span class="course-stat"><i class="fas fa-play-circle"></i> 55 Lessons</span>
+                        <span class="course-stat"><i class="fas fa-star"></i> 4.7</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-price">
+                            <span class="original">$349</span>
+                            $179
+                        </div>
+                    </div>
+                    <button class="course-btn">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="course-card" data-aos="fade-up" data-aos-delay="300" data-category="advanced">
+                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400" alt="Course" class="course-image">
+                <div class="course-content">
+                    <span class="course-badge hot">NEW</span>
+                    <h3 class="course-title">Advanced Technical Analysis</h3>
+                    <p class="course-description">Deep dive into chart patterns, indicators, and price action trading strategies.</p>
+                    <div class="course-stats">
+                        <span class="course-stat"><i class="fas fa-clock"></i> 20 Hours</span>
+                        <span class="course-stat"><i class="fas fa-play-circle"></i> 78 Lessons</span>
+                        <span class="course-stat"><i class="fas fa-star"></i> 4.9</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-price">
+                            <span class="original">$499</span>
+                            $249
+                        </div>
+                    </div>
+                    <button class="course-btn">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Course 5 -->
+            <div class="course-card" data-aos="fade-up" data-aos-delay="400" data-category="beginner">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400" alt="Course" class="course-image">
+                <div class="course-content">
+                    <span class="course-badge">BEGINNER</span>
+                    <h3 class="course-title">Risk Management Essentials</h3>
+                    <p class="course-description">Learn to protect your capital with proven risk management techniques.</p>
+                    <div class="course-stats">
+                        <span class="course-stat"><i class="fas fa-clock"></i> 6 Hours</span>
+                        <span class="course-stat"><i class="fas fa-play-circle"></i> 28 Lessons</span>
+                        <span class="course-stat"><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-price">
+                            <span class="original">$199</span>
+                            $99
+                        </div>
+                    </div>
+                    <button class="course-btn">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Course 6 -->
+            <div class="course-card" data-aos="fade-up" data-aos-delay="500" data-category="advanced">
+                <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400" alt="Course" class="course-image">
+                <div class="course-content">
+                    <span class="course-badge">BUNDLE</span>
+                    <h3 class="course-title">Complete Trading Bundle</h3>
+                    <p class="course-description">All courses in one package. Best value for serious traders.</p>
+                    <div class="course-stats">
+                        <span class="course-stat"><i class="fas fa-clock"></i> 80+ Hours</span>
+                        <span class="course-stat"><i class="fas fa-play-circle"></i> 300+ Lessons</span>
+                        <span class="course-stat"><i class="fas fa-star"></i> 5.0</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-price">
+                            <span class="original">$1499</span>
+                            $599
+                        </div>
+                    </div>
+                    <button class="course-btn">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="mainFooter" class="main-footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright">© 2026 <span class="gradient-text">Elite Wall Street</span>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Course Filter
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                document.querySelectorAll('.course-card').forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Enroll Button
+        document.querySelectorAll('.course-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (Auth.isLoggedIn()) {
+                    App.showToast('Redirecting to payment...', 'info');
+                } else {
+                    App.showToast('Please login to enroll', 'warning');
+                    setTimeout(() => window.location.href = 'auth.html?mode=login', 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

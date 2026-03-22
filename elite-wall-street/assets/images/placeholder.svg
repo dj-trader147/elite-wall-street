@@ -1,0 +1,95 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#grad1)"/>
+  
+  <!-- Grid Pattern -->
+  <g opacity="0.1">
+    <path d="M0,0 L1200,0" stroke="#fff" stroke-width="1"/>
+    <path d="M0,100 L1200,100" stroke="#fff" stroke-width="1"/>
+    <path d="M0,200 L1200,200" stroke="#fff" stroke-width="1"/>
+    <path d="M0,300 L1200,300" stroke="#fff" stroke-width="1"/>
+    <path d="M0,400 L1200,400" stroke="#fff" stroke-width="1"/>
+    <path d="M0,500 L1200,500" stroke="#fff" stroke-width="1"/>
+    <path d="M0,600 L1200,600" stroke="#fff" stroke-width="1"/>
+    
+    <path d="M0,0 L0,600" stroke="#fff" stroke-width="1"/>
+    <path d="M200,0 L200,600" stroke="#fff" stroke-width="1"/>
+    <path d="M400,0 L400,600" stroke="#fff" stroke-width="1"/>
+    <path d="M600,0 L600,600" stroke="#fff" stroke-width="1"/>
+    <path d="M800,0 L800,600" stroke="#fff" stroke-width="1"/>
+    <path d="M1000,0 L1000,600" stroke="#fff" stroke-width="1"/>
+    <path d="M1200,0 L1200,600" stroke="#fff" stroke-width="1"/>
+  </g>
+  
+  <!-- Stock Chart Line -->
+  <path d="M100,400 Q300,200 500,300 T900,200" 
+        stroke="#fff" 
+        stroke-width="3" 
+        fill="none" 
+        filter="url(#glow)"
+        opacity="0.8"/>
+  
+  <!-- Candlesticks -->
+  <g opacity="0.6">
+    <!-- Green Candle -->
+    <rect x="150" y="320" width="40" height="80" fill="#00ff88"/>
+    <line x1="170" y1="300" x2="170" y2="420" stroke="#00ff88" stroke-width="2"/>
+    
+    <!-- Red Candle -->
+    <rect x="250" y="280" width="40" height="60" fill="#ff4757"/>
+    <line x1="270" y1="260" x2="270" y2="360" stroke="#ff4757" stroke-width="2"/>
+    
+    <!-- Green Candle -->
+    <rect x="350" y="340" width="40" height="70" fill="#00ff88"/>
+    <line x1="370" y1="320" x2="370" y2="430" stroke="#00ff88" stroke-width="2"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="600" y="300" 
+        font-family="'Inter', sans-serif" 
+        font-size="48" 
+        font-weight="700" 
+        fill="#fff" 
+        text-anchor="middle"
+        filter="url(#glow)">
+    ELITE WALL STREET
+  </text>
+  
+  <text x="600" y="340" 
+        font-family="'Inter', sans-serif" 
+        font-size="24" 
+        fill="#fff" 
+        text-anchor="middle"
+        opacity="0.8">
+    Trade with Confidence
+  </text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="100" cy="100" r="50" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <circle cx="1100" cy="500" r="60" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Dollar Symbol -->
+  <text x="1100" y="520" 
+        font-family="'Inter', sans-serif" 
+        font-size="60" 
+        font-weight="700" 
+        fill="#fff" 
+        text-anchor="middle"
+        opacity="0.4">
+    $
+  </text>
+</svg>

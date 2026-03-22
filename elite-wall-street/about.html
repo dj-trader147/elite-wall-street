@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Elite Wall Street - Our Story and Mission">
+    
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>About Us | Elite Wall Street</title>
+    
+    <style>
+        .about-hero {
+            padding: calc(var(--header-height) + 100px) 24px 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-title {
+            font-family: var(--font-primary);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 24px;
+        }
+
+        .about-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+        }
+
+        .story-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .story-text h2 {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        .story-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .story-image {
+            position: relative;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .values-section {
+            padding: 80px 24px;
+            background: var(--bg-secondary);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 48px auto 0;
+        }
+
+        .value-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-red);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 24px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+
+        .value-card h3 {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .value-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            padding: 80px 24px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            border-color: var(--primary-red);
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-family: var(--font-primary);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .timeline-section {
+            padding: 80px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .timeline-year {
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            color: var(--primary-red);
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 120px; height: 120px; border-radius: 10px; display: block;">
+            </div>
+            <div class="preloader-text">ELITE WALL STREET</div>
+            <div class="preloader-bar"><div class="preloader-progress"></div></div>
+            <div class="preloader-percentage">0%</div>
+        </div>
+    </div>
+
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    <div class="background-effects">
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <header id="mainHeader" class="main-header">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-icon">
+                            <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 60px; height: 60px; border-radius: 8px; display: block;">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-elite">ELITE</span>
+                            <span class="logo-wallstreet">WALL STREET</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link"><span class="nav-icon"><i class="fas fa-home"></i></span><span>Home</span></a></li>
+                    <li><a href="market.html" class="nav-link"><span class="nav-icon"><i class="fas fa-chart-line"></i></span><span>Market</span></a></li>
+                    <li><a href="community.html" class="nav-link"><span class="nav-icon"><i class="fas fa-users"></i></span><span>Community</span></a></li>
+                    <li><a href="courses.html" class="nav-link"><span class="nav-icon"><i class="fas fa-graduation-cap"></i></span><span>Courses</span></a></li>
+                    <li><a href="about.html" class="nav-link active"><span class="nav-icon"><i class="fas fa-info-circle"></i></span><span>About</span></a></li>
+                    <li><a href="contact.html" class="nav-link"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>Contact</span></a></li>
+                </ul>
+            </div>
+            <div class="auth-buttons">
+                <a href="auth.html?mode=login" class="btn-login"><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                <a href="auth.html?mode=signup" class="btn-signup"><i class="fas fa-user-plus"></i><span>Sign Up</span></a>
+            </div>
+            <button id="hamburgerBtn" class="hamburger-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="assets/images/logo.jpeg?v=2" alt="Elite Wall Street" style="width: 55px; height: 55px; border-radius: 8px; display: block;">
+                    <div class="sidebar-logo-text">
+                        <span class="sidebar-elite">ELITE</span>
+                        <span class="sidebar-ws">WALL STREET</span>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="close-sidebar"><i class="fas fa-times"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="sidebar-links">
+                    <li class="sidebar-item"><a href="index.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-home"></i></div><span class="sidebar-text">Home</span></a></li>
+                    <li class="sidebar-item"><a href="market.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-chart-line"></i></div><span class="sidebar-text">Market</span></a></li>
+                    <li class="sidebar-item"><a href="community.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-users"></i></div><span class="sidebar-text">Community</span></a></li>
+                    <li class="sidebar-item"><a href="courses.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-graduation-cap"></i></div><span class="sidebar-text">Courses</span></a></li>
+                    <li class="sidebar-item"><a href="about.html" class="sidebar-link active"><div class="sidebar-icon"><i class="fas fa-info-circle"></i></div><span class="sidebar-text">About</span></a></li>
+                    <li class="sidebar-item"><a href="contact.html" class="sidebar-link"><div class="sidebar-icon"><i class="fas fa-envelope"></i></div><span class="sidebar-text">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-auth">
+                <a href="auth.html?mode=login" class="sidebar-btn login"><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                <a href="auth.html?mode=signup" class="sidebar-btn signup"><i class="fas fa-user-plus"></i><span>Sign Up</span></a>
+            </div>
+            <div class="sidebar-footer"><p>© 2026 Elite Wall Street</p></div>
+        </div>
+    </aside>
+
+    <main id="mainContent" class="main-content">
+        <section class="about-hero">
+            <h1 class="about-title" data-aos="fade-up">
+                About <span class="gradient-text">Elite Wall Street</span>
+            </h1>
+            <p class="about-subtitle" data-aos="fade-up" data-aos-delay="100">
+                We're on a mission to democratize trading education and build the world's most supportive trading community.
+            </p>
+        </section>
+
+        <section class="story-section">
+            <div class="story-content">
+                <div class="story-text" data-aos="fade-right">
+                    <h2>Our <span class="gradient-text">Story</span></h2>
+                    <p>
+                        Elite Wall Street was founded in 2020 by a group of professional traders who believed that quality trading education should be accessible to everyone.
+                    </p>
+                    <p>
+                        After years of working in traditional finance, our founders saw that retail traders lacked the resources and community support available to institutional traders. They set out to change that.
+                    </p>
+                    <p>
+                        Today, we've grown into a community of over 5,000 active traders from around the world, united by a passion for the markets and a commitment to continuous learning.
+                    </p>
+                </div>
+                <div class="story-image" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600" alt="Trading Team">
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Values</span>
+                <h2 class="section-title">What <span class="gradient-text">Drives Us</span></h2>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card" data-aos="fade-up">
+                    <div class="value-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Integrity</h3>
+                    <p>We believe in honest, transparent education with no get-rich-quick schemes.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="value-icon"><i class="fas fa-users"></i></div>
+                    <h3>Community</h3>
+                    <p>Trading doesn't have to be lonely. We lift each other up and grow together.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="value-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Education</h3>
+                    <p>Continuous learning is the key to long-term success in the markets.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="value-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Excellence</h3>
+                    <p>We strive for excellence in everything we do, from content to support.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Impact</span>
+                <h2 class="section-title">Numbers That <span class="gradient-text">Matter</span></h2>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box" data-aos="fade-up">
+                    <span class="stat-number">5K+</span>
+                    <span class="stat-label">Active Members</span>
+                </div>
+                <div class="stat-box" data-aos="fade-up" data-aos-delay="100">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Trading Courses</span>
+                </div>
+                <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
+                    <span class="stat-number">89%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+                <div class="stat-box" data-aos="fade-up" data-aos-delay="300">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Journey</span>
+                <h2 class="section-title"><span class="gradient-text">Milestones</span></h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-year">2020</div>
+                    <h3 class="timeline-title">Founded</h3>
+                    <p class="timeline-text">Elite Wall Street launched with a vision to democratize trading education.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-year">2021</div>
+                    <h3 class="timeline-title">1,000 Members</h3>
+                    <p class="timeline-text">Reached our first major milestone of 1,000 active community members.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-year">2022</div>
+                    <h3 class="timeline-title">Course Launch</h3>
+                    <p class="timeline-text">Launched our comprehensive trading course library with 50+ courses.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-year">2026</div>
+                    <h3 class="timeline-title">5,000+ Members</h3>
+                    <p class="timeline-text">Growing strong with over 5,000 traders worldwide and expanding daily.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2 class="cta-title"><span class="gradient-text">Join Our Journey</span></h2>
+                    <p class="cta-text">Be part of the Elite Wall Street community</p>
+                    <div class="cta-buttons">
+                        <a href="auth.html?mode=signup" class="btn-primary"><span class="btn-content"><i class="fas fa-rocket"></i><span>Get Started</span></span></a>
+                        <a href="contact.html" class="btn-outline"><span>Contact Us</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="mainFooter" class="main-footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright">© 2026 <span class="gradient-text">Elite Wall Street</span>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
